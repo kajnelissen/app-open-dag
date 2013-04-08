@@ -1,2 +1,2 @@
-app-open-dag
+Open dag app
 ============
