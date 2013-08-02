@@ -9,99 +9,104 @@ using OpenDagAppBackEnd.Models;
 
 namespace OpenDagAppBackEnd.Controllers
 {
-    public class TimeTableController : Controller
+    public class AnswerController : Controller
     {
         private OpenDagAppBackEndContext db = new OpenDagAppBackEndContext();
 
         //
-        // GET: /TimeTable/
+        // GET: /Answer/
         public ActionResult Index()
         {
-            return View(db.TimeTable.ToList());
+            var answer = db.Answer.Include(a => a.Study);
+            return View(answer.ToList());
         }
 
         //
-        // GET: /TimeTable/Details/5
+        // GET: /Answer/Details/5
         public ActionResult Details(Int32 id)
         {
-            TimeTable timetable = db.TimeTable.Find(id);
-            if (timetable == null)
+            Answer answer = db.Answer.Find(id);
+            if (answer == null)
             {
                 return HttpNotFound();
             }
-            return View(timetable);
+            return View(answer);
         }
 
         //
-        // GET: /TimeTable/Create
+        // GET: /Answer/Create
         public ActionResult Create()
         {
+            ViewBag.StudyId = new SelectList(db.Study, "Id", "Name");
             return View();
         }
 
         //
-        // POST: /TimeTable/Create
+        // POST: /Answer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(TimeTable timetable)
+        public ActionResult Create(Answer answer)
         {
             if (ModelState.IsValid)
             {
-                db.TimeTable.Add(timetable);
+                db.Answer.Add(answer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(timetable);
+            ViewBag.StudyId = new SelectList(db.Study, "Id", "Name", answer.StudyId);
+            return View(answer);
         }
 
         //
-        // GET: /TimeTable/Edit/5
+        // GET: /Answer/Edit/5
         public ActionResult Edit(Int32 id)
         {
-            TimeTable timetable = db.TimeTable.Find(id);
-            if (timetable == null)
+            Answer answer = db.Answer.Find(id);
+            if (answer == null)
             {
                 return HttpNotFound();
             }
-            return View(timetable);
+            ViewBag.StudyId = new SelectList(db.Study, "Id", "Name", answer.StudyId);
+            return View(answer);
         }
 
         //
-        // POST: /TimeTable/Edit/5
+        // POST: /Answer/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(TimeTable timetable)
+        public ActionResult Edit(Answer answer)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(timetable).State = EntityState.Modified;
+                db.Entry(answer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(timetable);
+            ViewBag.StudyId = new SelectList(db.Study, "Id", "Name", answer.StudyId);
+            return View(answer);
         }
 
         //
-        // GET: /TimeTable/Delete/5
+        // GET: /Answer/Delete/5
         public ActionResult Delete(Int32 id)
         {
-            TimeTable timetable = db.TimeTable.Find(id);
-            if (timetable == null)
+            Answer answer = db.Answer.Find(id);
+            if (answer == null)
             {
                 return HttpNotFound();
             }
-            return View(timetable);
+            return View(answer);
         }
 
         //
-        // POST: /TimeTable/Delete/5
+        // POST: /Answer/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Int32 id)
         {
-            TimeTable timetable = db.TimeTable.Find(id);
-            db.TimeTable.Remove(timetable);
+            Answer answer = db.Answer.Find(id);
+            db.Answer.Remove(answer);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,0 +1,25 @@
+@model OpenDagAppBackEnd.Models.NavigationTrack
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+	<legend>NavigationTrack</legend>
+	<dl>
+		<dt>
+			@Html.DisplayNameFor(model => model.Route.Name)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Route.Name)
+		</dd>
+
+	</dl>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

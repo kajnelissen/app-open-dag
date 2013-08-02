@@ -10,7 +10,7 @@ using System.Web;
 using System.Web.Http;
 using OpenDagAppBackEnd.Models;
 
-namespace OpenDagAppBackEnd.Controllers
+namespace OpenDagAppBackEnd.Controllers.Api
 {
     public class NavigationRoutesController : ApiController
     {

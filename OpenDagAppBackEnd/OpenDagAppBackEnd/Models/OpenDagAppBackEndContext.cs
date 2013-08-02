@@ -21,13 +21,23 @@ namespace OpenDagAppBackEnd.Models
         {
         }
 
-        public DbSet<OpenDagAppBackEnd.Models.Study> Study { get; set; }
+        public DbSet<OpenDagAppBackEnd.Models.NavigationRoute> NavigationRoute { get; set; }
 
         public DbSet<OpenDagAppBackEnd.Models.Survey> Survey { get; set; }
 
-        public DbSet<OpenDagAppBackEnd.Models.NavigationRoute> NavigationRoute { get; set; }
+        public DbSet<OpenDagAppBackEnd.Models.Study> Study { get; set; }
 
         public DbSet<OpenDagAppBackEnd.Models.TimeTable> TimeTable { get; set; }
+
+        public DbSet<OpenDagAppBackEnd.Models.Question> Question { get; set; }
+
+        public DbSet<OpenDagAppBackEnd.Models.Answer> Answer { get; set; }
+
+        public DbSet<OpenDagAppBackEnd.Models.NavigationTrack> NavigationTrack { get; set; }
+
+        public DbSet<OpenDagAppBackEnd.Models.StudyInformation> StudyInformation { get; set; }
+
+        public DbSet<OpenDagAppBackEnd.Models.TimeTableEntry> TimeTableEntry { get; set; }
 
     }
 }

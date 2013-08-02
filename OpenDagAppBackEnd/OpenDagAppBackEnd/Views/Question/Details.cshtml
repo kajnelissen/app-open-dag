@@ -1,0 +1,33 @@
+@model OpenDagAppBackEnd.Models.Question
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+	<legend>Question</legend>
+	<dl>
+		<dt>
+			@Html.DisplayNameFor(model => model.Text)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Text)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Survey.Name)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Survey.Name)
+		</dd>
+
+	</dl>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

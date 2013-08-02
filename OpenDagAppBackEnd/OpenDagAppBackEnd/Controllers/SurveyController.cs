@@ -2,104 +2,108 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web;
-using System.Web.Http;
+using System.Web.Mvc;
 using OpenDagAppBackEnd.Models;
 
 namespace OpenDagAppBackEnd.Controllers
 {
-    public class SurveyController : ApiController
+    public class SurveyController : Controller
     {
         private OpenDagAppBackEndContext db = new OpenDagAppBackEndContext();
 
-        // GET api/Survey
-        public IEnumerable<Survey> GetSurvey()
+        //
+        // GET: /Survey/
+        public ActionResult Index()
         {
-            return db.Survey.AsEnumerable();
+            return View(db.Survey.ToList());
         }
 
-        // GET api/Survey/5
-        public Survey GetSurvey(Int32 id)
+        //
+        // GET: /Survey/Details/5
+        public ActionResult Details(Int32 id)
         {
             Survey survey = db.Survey.Find(id);
             if (survey == null)
             {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+                return HttpNotFound();
             }
-
-            return survey;
+            return View(survey);
         }
 
-        // PUT api/Survey/5
-        public HttpResponseMessage PutSurvey(Int32 id, Survey survey)
+        //
+        // GET: /Survey/Create
+        public ActionResult Create()
         {
-            if (!ModelState.IsValid)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
-
-            if (id != survey.Id)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
-
-            db.Entry(survey).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return View();
         }
 
-        // POST api/Survey
-        public HttpResponseMessage PostSurvey(Survey survey)
+        //
+        // POST: /Survey/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Survey survey)
         {
             if (ModelState.IsValid)
             {
                 db.Survey.Add(survey);
                 db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, survey);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = survey.Id }));
-                return response;
-            }
-            else
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
+            return View(survey);
         }
 
-        // DELETE api/Survey/5
-        public HttpResponseMessage DeleteSurvey(Int32 id)
+        //
+        // GET: /Survey/Edit/5
+        public ActionResult Edit(Int32 id)
         {
             Survey survey = db.Survey.Find(id);
             if (survey == null)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+                return HttpNotFound();
             }
+            return View(survey);
+        }
 
-            db.Survey.Remove(survey);
-
-            try
+        //
+        // POST: /Survey/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Survey survey)
+        {
+            if (ModelState.IsValid)
             {
+                db.Entry(survey).State = EntityState.Modified;
                 db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            catch (DbUpdateConcurrencyException ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
-            }
+            return View(survey);
+        }
 
-            return Request.CreateResponse(HttpStatusCode.OK, survey);
+        //
+        // GET: /Survey/Delete/5
+        public ActionResult Delete(Int32 id)
+        {
+            Survey survey = db.Survey.Find(id);
+            if (survey == null)
+            {
+                return HttpNotFound();
+            }
+            return View(survey);
+        }
+
+        //
+        // POST: /Survey/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(Int32 id)
+        {
+            Survey survey = db.Survey.Find(id);
+            db.Survey.Remove(survey);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

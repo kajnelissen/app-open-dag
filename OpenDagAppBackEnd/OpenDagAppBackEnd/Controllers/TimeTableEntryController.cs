@@ -9,99 +9,104 @@ using OpenDagAppBackEnd.Models;
 
 namespace OpenDagAppBackEnd.Controllers
 {
-    public class TimeTableController : Controller
+    public class TimeTableEntryController : Controller
     {
         private OpenDagAppBackEndContext db = new OpenDagAppBackEndContext();
 
         //
-        // GET: /TimeTable/
+        // GET: /TimeTableEntry/
         public ActionResult Index()
         {
-            return View(db.TimeTable.ToList());
+            var timetableentry = db.TimeTableEntry.Include(t => t.TimeTable);
+            return View(timetableentry.ToList());
         }
 
         //
-        // GET: /TimeTable/Details/5
+        // GET: /TimeTableEntry/Details/5
         public ActionResult Details(Int32 id)
         {
-            TimeTable timetable = db.TimeTable.Find(id);
-            if (timetable == null)
+            TimeTableEntry timetableentry = db.TimeTableEntry.Find(id);
+            if (timetableentry == null)
             {
                 return HttpNotFound();
             }
-            return View(timetable);
+            return View(timetableentry);
         }
 
         //
-        // GET: /TimeTable/Create
+        // GET: /TimeTableEntry/Create
         public ActionResult Create()
         {
+            ViewBag.TimeTableId = new SelectList(db.TimeTable, "Id", "Id");
             return View();
         }
 
         //
-        // POST: /TimeTable/Create
+        // POST: /TimeTableEntry/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(TimeTable timetable)
+        public ActionResult Create(TimeTableEntry timetableentry)
         {
             if (ModelState.IsValid)
             {
-                db.TimeTable.Add(timetable);
+                db.TimeTableEntry.Add(timetableentry);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(timetable);
+            ViewBag.TimeTableId = new SelectList(db.TimeTable, "Id", "Id", timetableentry.TimeTableId);
+            return View(timetableentry);
         }
 
         //
-        // GET: /TimeTable/Edit/5
+        // GET: /TimeTableEntry/Edit/5
         public ActionResult Edit(Int32 id)
         {
-            TimeTable timetable = db.TimeTable.Find(id);
-            if (timetable == null)
+            TimeTableEntry timetableentry = db.TimeTableEntry.Find(id);
+            if (timetableentry == null)
             {
                 return HttpNotFound();
             }
-            return View(timetable);
+            ViewBag.TimeTableId = new SelectList(db.TimeTable, "Id", "Id", timetableentry.TimeTableId);
+            return View(timetableentry);
         }
 
         //
-        // POST: /TimeTable/Edit/5
+        // POST: /TimeTableEntry/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(TimeTable timetable)
+        public ActionResult Edit(TimeTableEntry timetableentry)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(timetable).State = EntityState.Modified;
+                db.Entry(timetableentry).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(timetable);
+            ViewBag.TimeTableId = new SelectList(db.TimeTable, "Id", "Id", timetableentry.TimeTableId);
+            return View(timetableentry);
         }
 
         //
-        // GET: /TimeTable/Delete/5
+        // GET: /TimeTableEntry/Delete/5
         public ActionResult Delete(Int32 id)
         {
-            TimeTable timetable = db.TimeTable.Find(id);
-            if (timetable == null)
+            TimeTableEntry timetableentry = db.TimeTableEntry.Find(id);
+            if (timetableentry == null)
             {
                 return HttpNotFound();
             }
-            return View(timetable);
+            return View(timetableentry);
         }
 
         //
-        // POST: /TimeTable/Delete/5
+        // POST: /TimeTableEntry/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Int32 id)
         {
-            TimeTable timetable = db.TimeTable.Find(id);
-            db.TimeTable.Remove(timetable);
+            TimeTableEntry timetableentry = db.TimeTableEntry.Find(id);
+            db.TimeTableEntry.Remove(timetableentry);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

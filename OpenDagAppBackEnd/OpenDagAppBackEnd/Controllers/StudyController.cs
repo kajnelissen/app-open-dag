@@ -2,104 +2,108 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web;
-using System.Web.Http;
+using System.Web.Mvc;
 using OpenDagAppBackEnd.Models;
 
 namespace OpenDagAppBackEnd.Controllers
 {
-    public class StudyController : ApiController
+    public class StudyController : Controller
     {
         private OpenDagAppBackEndContext db = new OpenDagAppBackEndContext();
 
-        // GET api/Study
-        public IEnumerable<Study> GetStudy()
+        //
+        // GET: /Study/
+        public ActionResult Index()
         {
-            return db.Study.AsEnumerable();
+            return View(db.Study.ToList());
         }
 
-        // GET api/Study/5
-        public Study GetStudy(Int32 id)
+        //
+        // GET: /Study/Details/5
+        public ActionResult Details(Int32 id)
         {
             Study study = db.Study.Find(id);
             if (study == null)
             {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+                return HttpNotFound();
             }
-
-            return study;
+            return View(study);
         }
 
-        // PUT api/Study/5
-        public HttpResponseMessage PutStudy(Int32 id, Study study)
+        //
+        // GET: /Study/Create
+        public ActionResult Create()
         {
-            if (!ModelState.IsValid)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
-
-            if (id != study.Id)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
-
-            db.Entry(study).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return View();
         }
 
-        // POST api/Study
-        public HttpResponseMessage PostStudy(Study study)
+        //
+        // POST: /Study/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Study study)
         {
             if (ModelState.IsValid)
             {
                 db.Study.Add(study);
                 db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, study);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = study.Id }));
-                return response;
-            }
-            else
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
+            return View(study);
         }
 
-        // DELETE api/Study/5
-        public HttpResponseMessage DeleteStudy(Int32 id)
+        //
+        // GET: /Study/Edit/5
+        public ActionResult Edit(Int32 id)
         {
             Study study = db.Study.Find(id);
             if (study == null)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+                return HttpNotFound();
             }
+            return View(study);
+        }
 
-            db.Study.Remove(study);
-
-            try
+        //
+        // POST: /Study/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Study study)
+        {
+            if (ModelState.IsValid)
             {
+                db.Entry(study).State = EntityState.Modified;
                 db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            catch (DbUpdateConcurrencyException ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
-            }
+            return View(study);
+        }
 
-            return Request.CreateResponse(HttpStatusCode.OK, study);
+        //
+        // GET: /Study/Delete/5
+        public ActionResult Delete(Int32 id)
+        {
+            Study study = db.Study.Find(id);
+            if (study == null)
+            {
+                return HttpNotFound();
+            }
+            return View(study);
+        }
+
+        //
+        // POST: /Study/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(Int32 id)
+        {
+            Study study = db.Study.Find(id);
+            db.Study.Remove(study);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

@@ -9,99 +9,104 @@ using OpenDagAppBackEnd.Models;
 
 namespace OpenDagAppBackEnd.Controllers
 {
-    public class TimeTableController : Controller
+    public class QuestionController : Controller
     {
         private OpenDagAppBackEndContext db = new OpenDagAppBackEndContext();
 
         //
-        // GET: /TimeTable/
+        // GET: /Question/
         public ActionResult Index()
         {
-            return View(db.TimeTable.ToList());
+            var question = db.Question.Include(q => q.Survey);
+            return View(question.ToList());
         }
 
         //
-        // GET: /TimeTable/Details/5
+        // GET: /Question/Details/5
         public ActionResult Details(Int32 id)
         {
-            TimeTable timetable = db.TimeTable.Find(id);
-            if (timetable == null)
+            Question question = db.Question.Find(id);
+            if (question == null)
             {
                 return HttpNotFound();
             }
-            return View(timetable);
+            return View(question);
         }
 
         //
-        // GET: /TimeTable/Create
+        // GET: /Question/Create
         public ActionResult Create()
         {
+            ViewBag.SurveyId = new SelectList(db.Survey, "Id", "Name");
             return View();
         }
 
         //
-        // POST: /TimeTable/Create
+        // POST: /Question/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(TimeTable timetable)
+        public ActionResult Create(Question question)
         {
             if (ModelState.IsValid)
             {
-                db.TimeTable.Add(timetable);
+                db.Question.Add(question);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(timetable);
+            ViewBag.SurveyId = new SelectList(db.Survey, "Id", "Name", question.SurveyId);
+            return View(question);
         }
 
         //
-        // GET: /TimeTable/Edit/5
+        // GET: /Question/Edit/5
         public ActionResult Edit(Int32 id)
         {
-            TimeTable timetable = db.TimeTable.Find(id);
-            if (timetable == null)
+            Question question = db.Question.Find(id);
+            if (question == null)
             {
                 return HttpNotFound();
             }
-            return View(timetable);
+            ViewBag.SurveyId = new SelectList(db.Survey, "Id", "Name", question.SurveyId);
+            return View(question);
         }
 
         //
-        // POST: /TimeTable/Edit/5
+        // POST: /Question/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(TimeTable timetable)
+        public ActionResult Edit(Question question)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(timetable).State = EntityState.Modified;
+                db.Entry(question).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(timetable);
+            ViewBag.SurveyId = new SelectList(db.Survey, "Id", "Name", question.SurveyId);
+            return View(question);
         }
 
         //
-        // GET: /TimeTable/Delete/5
+        // GET: /Question/Delete/5
         public ActionResult Delete(Int32 id)
         {
-            TimeTable timetable = db.TimeTable.Find(id);
-            if (timetable == null)
+            Question question = db.Question.Find(id);
+            if (question == null)
             {
                 return HttpNotFound();
             }
-            return View(timetable);
+            return View(question);
         }
 
         //
-        // POST: /TimeTable/Delete/5
+        // POST: /Question/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Int32 id)
         {
-            TimeTable timetable = db.TimeTable.Find(id);
-            db.TimeTable.Remove(timetable);
+            Question question = db.Question.Find(id);
+            db.Question.Remove(question);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

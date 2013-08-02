@@ -1,0 +1,54 @@
+@model OpenDagAppBackEnd.Models.Study
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="form-horizontal">
+        <legend>Study</legend>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.Name)
+				@Html.ValidationMessageFor(model => model.Name, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.ShortName, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.ShortName)
+				@Html.ValidationMessageFor(model => model.ShortName, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.StudyInformationId, new { @class = "control-label" })
+			<div class="controls">
+				@Html.EditorFor(model => model.StudyInformationId)
+				@Html.ValidationMessageFor(model => model.StudyInformationId, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Create" class="btn" />
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
