@@ -19,10 +19,13 @@ namespace OpenDagAppBackEnd
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            /*bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/bootstrap-responsive.css"));
+                      "~/Content/bootstrap-responsive.css"));*/
+
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/normalize.css",
+                "~/Content/main.css"));
         }
     }
 }
