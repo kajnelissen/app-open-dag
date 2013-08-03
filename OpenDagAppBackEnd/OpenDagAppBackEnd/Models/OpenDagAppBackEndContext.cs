@@ -25,8 +25,6 @@ namespace OpenDagAppBackEnd.Models
 
         public DbSet<OpenDagAppBackEnd.Models.Survey> Survey { get; set; }
 
-        public DbSet<OpenDagAppBackEnd.Models.Study> Study { get; set; }
-
         public DbSet<OpenDagAppBackEnd.Models.TimeTable> TimeTable { get; set; }
 
         public DbSet<OpenDagAppBackEnd.Models.Question> Question { get; set; }
@@ -39,5 +37,6 @@ namespace OpenDagAppBackEnd.Models
 
         public DbSet<OpenDagAppBackEnd.Models.TimeTableEntry> TimeTableEntry { get; set; }
 
+        public DbSet<OpenDagAppBackEnd.Models.Study> Study { get; set; }
     }
 }
