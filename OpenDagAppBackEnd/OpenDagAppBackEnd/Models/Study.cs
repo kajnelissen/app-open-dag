@@ -18,7 +18,7 @@ namespace OpenDagAppBackEnd.Models
         [StringLength(5, MinimumLength = 1)]
         public string ShortName { get; set; }
 
-        public int StudyInformationId { get; set; }
+        //public int StudyInformationId { get; set; }
 
         public virtual ICollection<StudyInformation> Information { get; set; }
     }
