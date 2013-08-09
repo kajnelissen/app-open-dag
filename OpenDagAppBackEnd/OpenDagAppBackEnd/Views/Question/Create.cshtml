@@ -12,10 +12,11 @@
     @Html.ValidationSummary(true)
 
     <fieldset class="form-horizontal">
-        <legend>Question</legend>
+        <legend><b>Question</b></legend>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.Text, new { @class = "control-label" })
+            @*@Html.LabelFor(model => model.Text, new { @class = "control-label" })*@
+            <b>Vraag</b>
 			<div class="controls">
 				@Html.EditorFor(model => model.Text)
 				@Html.ValidationMessageFor(model => model.Text, null, new { @class = "help-inline" })
@@ -23,7 +24,7 @@
 		</div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.SurveyId, "Survey", new { @class = "control-label" })
+            <b>@Html.LabelFor(model => model.SurveyId, "Survey", new { @class = "control-label" })</b>
 			<div class="controls">
 				@Html.DropDownList("SurveyId", String.Empty)
 				@Html.ValidationMessageFor(model => model.SurveyId, null, new { @class = "help-inline" })

@@ -9,25 +9,31 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table" border="1">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            <b>Activeit</b>
+            @*@Html.DisplayNameFor(model => model.Title)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            <b>Beschrijving activeit</b>
+            @*@Html.DisplayNameFor(model => model.Description)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Location)
+            <b>Locatie</b>
+            @*@Html.DisplayNameFor(model => model.Location)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StartTime)
+            <b>Begintijd</b>
+            @*@Html.DisplayNameFor(model => model.StartTime)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EndTime)
+            <b>Eindtijd</b>
+            @*@Html.DisplayNameFor(model => model.EndTime)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TimeTable.Id)
+            <b>Dagprogramma</b>
+            @*@Html.DisplayNameFor(model => model.TimeTable.Id)*@
         </th>
         <th></th>
     </tr>
@@ -50,7 +56,8 @@
             @Html.DisplayFor(modelItem => item.EndTime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TimeTable.Id)
+            @ViewBag.TimeTable.Find(item.TimeTable.Id).Date
+            @*@Html.DisplayFor(modelItem => item.TimeTable.Id*@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

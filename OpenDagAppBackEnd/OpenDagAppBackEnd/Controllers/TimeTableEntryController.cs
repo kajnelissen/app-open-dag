@@ -18,6 +18,7 @@ namespace OpenDagAppBackEnd.Controllers
         public ActionResult Index()
         {
             var timetableentry = db.TimeTableEntry.Include(t => t.TimeTable);
+            ViewBag.timeTable = db.TimeTable;
             return View(timetableentry.ToList());
         }
 
@@ -26,6 +27,9 @@ namespace OpenDagAppBackEnd.Controllers
         public ActionResult Details(Int32 id)
         {
             TimeTableEntry timetableentry = db.TimeTableEntry.Find(id);
+
+            ViewBag.TimeTable = db.TimeTable.Find(timetableentry.TimeTableId).Date;
+
             if (timetableentry == null)
             {
                 return HttpNotFound();
@@ -37,7 +41,7 @@ namespace OpenDagAppBackEnd.Controllers
         // GET: /TimeTableEntry/Create
         public ActionResult Create()
         {
-            ViewBag.TimeTableId = new SelectList(db.TimeTable, "Id", "Id");
+            ViewBag.TimeTableId = new SelectList(db.TimeTable, "Id", "Date");
             return View();
         }
 
@@ -63,11 +67,13 @@ namespace OpenDagAppBackEnd.Controllers
         public ActionResult Edit(Int32 id)
         {
             TimeTableEntry timetableentry = db.TimeTableEntry.Find(id);
+
             if (timetableentry == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.TimeTableId = new SelectList(db.TimeTable, "Id", "Id", timetableentry.TimeTableId);
+            ViewBag.TimeTableId = new SelectList(db.TimeTable, "Id", "Date", timetableentry.TimeTableId);
+  
             return View(timetableentry);
         }
 
@@ -92,6 +98,9 @@ namespace OpenDagAppBackEnd.Controllers
         public ActionResult Delete(Int32 id)
         {
             TimeTableEntry timetableentry = db.TimeTableEntry.Find(id);
+
+            ViewBag.TimeTable = db.TimeTable.Find(timetableentry.TimeTableId).Date;
+
             if (timetableentry == null)
             {
                 return HttpNotFound();

@@ -26,6 +26,7 @@ namespace OpenDagAppBackEnd.Controllers
         public ActionResult Details(Int32 id)
         {
             Question question = db.Question.Find(id);
+            ViewBag.SurveyName = db.Survey.Find(question.SurveyId).Name;
             if (question == null)
             {
                 return HttpNotFound();

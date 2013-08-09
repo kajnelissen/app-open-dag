@@ -8,31 +8,45 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <fieldset>
-    <legend>Answer</legend>
+    <legend><h3>Answer</h3></legend>
 
 	<dl>
 		<dt>
-			@Html.DisplayNameFor(model => model.Title)
+            <b>Antwoord</b>
+			@*@Html.DisplayNameFor(model => model.Text)*@
 		</dt>
 
 		<dd>
-			@Html.DisplayFor(model => model.Title)
+			@Html.DisplayFor(model => model.Text)
 		</dd>
 
 		<dt>
-			@Html.DisplayNameFor(model => model.Content)
+            <b>Vraag</b>
+			@*@Html.DisplayNameFor(model => model.Question.Text)*@
 		</dt>
 
 		<dd>
-			@Html.DisplayFor(model => model.Content)
+            @ViewBag.Question
+			@*@Html.DisplayFor(model => model.Question.Text)*@
 		</dd>
 
 		<dt>
-			@Html.DisplayNameFor(model => model.Study.Name)
+            <b>Studie</b>
+			@*@Html.DisplayNameFor(model => model.studyId)*@
 		</dt>
 
 		<dd>
-			@Html.DisplayFor(model => model.Study.Name)
+			@*@Html.DisplayFor(model => model.studyId)*@
+            @ViewBag.Study
+		</dd>
+
+		<dt>
+            <b>Rating</b>
+			@*@Html.DisplayNameFor(model => model.Rating)*@
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Rating)
 		</dd>
 
 	</dl>

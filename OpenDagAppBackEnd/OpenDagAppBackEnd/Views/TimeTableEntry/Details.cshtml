@@ -7,10 +7,11 @@
 <h2>Details</h2>
 
 <fieldset>
-	<legend>TimeTableEntry</legend>
+	<legend><h3>TimeTableEntry</h3></legend>
 	<dl>
 		<dt>
-			@Html.DisplayNameFor(model => model.Title)
+            <b>Activiteit</b>
+			@*@Html.DisplayNameFor(model => model.Title)*@
 		</dt>
 
 		<dd>
@@ -18,7 +19,8 @@
 		</dd>
 
 		<dt>
-			@Html.DisplayNameFor(model => model.Description)
+            <b>Beschrijving activiteit</b>
+			@*@Html.DisplayNameFor(model => model.Description)*@
 		</dt>
 
 		<dd>
@@ -26,7 +28,8 @@
 		</dd>
 
 		<dt>
-			@Html.DisplayNameFor(model => model.Location)
+            <b>Locatie</b>
+			@*@Html.DisplayNameFor(model => model.Location)*@
 		</dt>
 
 		<dd>
@@ -34,7 +37,8 @@
 		</dd>
 
 		<dt>
-			@Html.DisplayNameFor(model => model.StartTime)
+            <b>Begintijd</b>
+			@*@Html.DisplayNameFor(model => model.StartTime)*@
 		</dt>
 
 		<dd>
@@ -42,7 +46,8 @@
 		</dd>
 
 		<dt>
-			@Html.DisplayNameFor(model => model.EndTime)
+            <b>Eindtijd</b>
+			@*@Html.DisplayNameFor(model => model.EndTime)*@
 		</dt>
 
 		<dd>
@@ -50,11 +55,13 @@
 		</dd>
 
 		<dt>
-			@Html.DisplayNameFor(model => model.TimeTable.Id)
+            <b>Dagprogramma</b>
+			@*@Html.DisplayNameFor(model => model.TimeTable.Id)*@
 		</dt>
 
 		<dd>
-			@Html.DisplayFor(model => model.TimeTable.Id)
+            @ViewBag.TimeTable
+			@*@Html.DisplayFor(model => model.TimeTable.Id)*@
 		</dd>
 
 	</dl>

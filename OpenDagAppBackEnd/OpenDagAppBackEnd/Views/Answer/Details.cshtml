@@ -7,30 +7,43 @@
 <h2>Details</h2>
 
 <fieldset>
-	<legend>Answer</legend>
+	<legend><h3>Answer</h3></legend>
 	<dl>
 		<dt>
-			@Html.DisplayNameFor(model => model.Title)
+            <b>Antwoord</b>
+			@*@Html.DisplayNameFor(model => model.Text)*@
 		</dt>
 
 		<dd>
-			@Html.DisplayFor(model => model.Title)
+			@Html.DisplayFor(model => model.Text)
 		</dd>
 
 		<dt>
-			@Html.DisplayNameFor(model => model.Content)
+            <b>Vraag</b>
+			@*@Html.DisplayNameFor(model => model.Question.Text)*@
 		</dt>
 
 		<dd>
-			@Html.DisplayFor(model => model.Content)
+            @ViewBag.Question
+			@*@Html.DisplayFor(model => model.Question.Text)*@
 		</dd>
 
 		<dt>
-			@Html.DisplayNameFor(model => model.Study.Name)
+            <b>Study</b>
+			@*@Html.DisplayNameFor(model => model.studyId)*@
 		</dt>
 
 		<dd>
-			@Html.DisplayFor(model => model.Study.Name)
+            @ViewBag.Study
+			@*@Html.DisplayFor(model => model.studyId)*@
+		</dd>
+
+		<dt>
+			<b>@Html.DisplayNameFor(model => model.Rating)</b>
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Rating)
 		</dd>
 
 	</dl>

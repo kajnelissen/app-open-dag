@@ -11,14 +11,18 @@ namespace OpenDagAppBackEnd.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(50, MinimumLength = 1)]
-        public string Title { get; set; }
+        [StringLength(80, MinimumLength = 1)]
+        public string Text { get; set; }
 
-        [Required]
-        public string Content { get; set; }
+        public int QuestionId { get; set; }
 
-        public int StudyId { get; set; }
+        public Question Question { get; set; }
 
-        public Study Study { get; set; }
+        public int studyId { get; set; }
+
+        //public Study Study { get; set; }
+
+        public int Rating { get; set; }
+        //public IDictionary<Study, int> StudyRatings { get; set; }
     }
 }

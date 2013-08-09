@@ -11,12 +11,13 @@
     @Html.ValidationSummary(true)
 
     <fieldset class="form-horizontal">
-        <legend>TimeTable</legend>
+        <legend><h3>TimeTable</h3></legend>
 
         @Html.HiddenFor(model => model.Id)
 
         <div class="control-group">
-            @Html.LabelFor(model => model.Date, new { @class = "control-label" })
+            <b>Datum</b>
+            @*@Html.LabelFor(model => model.Date, new { @class = "control-label" })*@
 			<div class="controls">
 				@Html.EditorFor(model => model.Date)
 				@Html.ValidationMessageFor(model => model.Date, null, new { @class = "help-inline" })

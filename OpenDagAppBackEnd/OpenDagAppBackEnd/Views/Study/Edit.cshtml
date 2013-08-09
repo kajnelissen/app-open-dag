@@ -11,20 +11,24 @@
     @Html.ValidationSummary(true)
 
     <fieldset class="form-horizontal">
-        <legend>Study</legend>
+        <legend><h3>Study</h3></legend>
 
         @Html.HiddenFor(model => model.Id)
 
+        <!--Studyname-->
         <div class="control-group">
-            @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+            <b>Naam</b>
+            @*@Html.LabelFor(model => model.Name, new { @class = "control-label" })*@
 			<div class="controls">
 				@Html.EditorFor(model => model.Name)
 				@Html.ValidationMessageFor(model => model.Name, null, new { @class = "help-inline" })
 			</div>
 		</div>
 
+        <!--Shortname-->
         <div class="control-group">
-            @Html.LabelFor(model => model.ShortName, new { @class = "control-label" })
+            <b>Afkorting</b>
+            @*@Html.LabelFor(model => model.ShortName, new { @class = "control-label" })*@
 			<div class="controls">
 				@Html.EditorFor(model => model.ShortName)
 				@Html.ValidationMessageFor(model => model.ShortName, null, new { @class = "help-inline" })

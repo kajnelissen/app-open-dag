@@ -15,26 +15,39 @@
         <legend>Answer</legend>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.Title, new { @class = "control-label" })
+            <b>Antwoord mogelijkheid</b>
+            @*@Html.LabelFor(model => model.Text, new { @class = "control-label" })*@
 			<div class="controls">
-				@Html.EditorFor(model => model.Title)
-				@Html.ValidationMessageFor(model => model.Title, null, new { @class = "help-inline" })
+				@Html.EditorFor(model => model.Text)
+				@Html.ValidationMessageFor(model => model.Text, null, new { @class = "help-inline" })
 			</div>
 		</div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.Content, new { @class = "control-label" })
+            @*@Html.LabelFor(model => model.QuestionId, "Question", new { @class = "control-label" })*@
+            <b>Vraag</b>
+        <div class="controls">
+            @Html.DropDownList("QuestionId", String.Empty)
+            @Html.ValidationMessageFor(model => model.QuestionId, null, new { @class = "help-inline" })
+        </div>
+    </div>
+
+    <div class="control-group">
+        @*@Html.LabelFor(model => model.studyId, new { @class = "control-label" })*@
+            <b>Studie</b>
 			<div class="controls">
-				@Html.EditorFor(model => model.Content)
-				@Html.ValidationMessageFor(model => model.Content, null, new { @class = "help-inline" })
+                @Html.DropDownList("StudyId", String.Empty)
+				@*@Html.EditorFor(model => model.studyId)*@
+				@Html.ValidationMessageFor(model => model.studyId, null, new { @class = "help-inline" })
 			</div>
 		</div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.StudyId, "Study", new { @class = "control-label" })
+            <b>Rating</b>
+            @*@Html.LabelFor(model => model.Rating, new { @class = "control-label" })*@
 			<div class="controls">
-				@Html.DropDownList("StudyId", String.Empty)
-				@Html.ValidationMessageFor(model => model.StudyId, null, new { @class = "help-inline" })
+				@Html.EditorFor(model => model.Rating)
+				@Html.ValidationMessageFor(model => model.Rating, null, new { @class = "help-inline" })
 			</div>
 		</div>
 

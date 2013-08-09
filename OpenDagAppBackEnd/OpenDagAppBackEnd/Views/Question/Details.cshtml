@@ -7,10 +7,11 @@
 <h2>Details</h2>
 
 <fieldset>
-	<legend>Question</legend>
+	<legend><b>Question</b></legend>
 	<dl>
 		<dt>
-			@Html.DisplayNameFor(model => model.Text)
+            <b>Vraag</b>
+            @*<b>@Html.DisplayNameFor(model => model.Text)</b>*@
 		</dt>
 
 		<dd>
@@ -18,11 +19,13 @@
 		</dd>
 
 		<dt>
-			@Html.DisplayNameFor(model => model.Survey.Name)
+            <b>Survey Naam</b>
+            @*<b>@Html.DisplayNameFor(model => model.Survey.Name)</b>*@
 		</dt>
 
 		<dd>
-			@Html.DisplayFor(model => model.Survey.Name)
+			@*@Html.DisplayFor(model => model.Survey.Name)*@
+            @ViewBag.SurveyName
 		</dd>
 
 	</dl>

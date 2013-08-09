@@ -17,7 +17,8 @@ namespace OpenDagAppBackEnd.Controllers
         // GET: /Answer/
         public ActionResult Index()
         {
-            var answer = db.Answer.Include(a => a.Study);
+            var answer = db.Answer.Include(a => a.Question);
+            ViewBag.Study = db.Study;
             return View(answer.ToList());
         }
 
@@ -26,6 +27,10 @@ namespace OpenDagAppBackEnd.Controllers
         public ActionResult Details(Int32 id)
         {
             Answer answer = db.Answer.Find(id);
+
+            ViewBag.Question = db.Question.Find(answer.QuestionId).Text;
+            ViewBag.Study = db.Study.Find(answer.studyId).Name;
+
             if (answer == null)
             {
                 return HttpNotFound();
@@ -37,6 +42,7 @@ namespace OpenDagAppBackEnd.Controllers
         // GET: /Answer/Create
         public ActionResult Create()
         {
+            ViewBag.QuestionId = new SelectList(db.Question, "Id", "Text");
             ViewBag.StudyId = new SelectList(db.Study, "Id", "Name");
             return View();
         }
@@ -54,7 +60,7 @@ namespace OpenDagAppBackEnd.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.StudyId = new SelectList(db.Study, "Id", "Name", answer.StudyId);
+            ViewBag.QuestionId = new SelectList(db.Question, "Id", "Text", answer.QuestionId);
             return View(answer);
         }
 
@@ -67,7 +73,8 @@ namespace OpenDagAppBackEnd.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.StudyId = new SelectList(db.Study, "Id", "Name", answer.StudyId);
+            ViewBag.QuestionId = new SelectList(db.Question, "Id", "Text", answer.QuestionId);
+            ViewBag.StudyId = new SelectList(db.Study, "Id", "Name", answer.studyId);
             return View(answer);
         }
 
@@ -83,7 +90,7 @@ namespace OpenDagAppBackEnd.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.StudyId = new SelectList(db.Study, "Id", "Name", answer.StudyId);
+            ViewBag.QuestionId = new SelectList(db.Question, "Id", "Text", answer.QuestionId);
             return View(answer);
         }
 
@@ -92,6 +99,8 @@ namespace OpenDagAppBackEnd.Controllers
         public ActionResult Delete(Int32 id)
         {
             Answer answer = db.Answer.Find(id);
+            ViewBag.Study = db.Study.Find(answer.studyId).Name;
+            ViewBag.Question = db.Question.Find(answer.QuestionId).Text;
             if (answer == null)
             {
                 return HttpNotFound();
