@@ -31,3 +31,20 @@
     @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@if (ViewBag.Questions != null)
+{
+    <table border="1">
+        <tr>
+            <th>
+                Vraag
+            </th>
+        </tr>
+        @foreach (var a in ViewBag.Questions)
+        {
+            <tr>
+                <td>@a.Text</td>
+            </tr>
+        }
+    </table>
+}

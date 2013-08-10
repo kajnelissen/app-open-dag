@@ -34,3 +34,41 @@
     @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@if (ViewBag.Answers != null)
+{
+    <table border="1">
+        <tr>
+            <th>
+                Antwoord
+            </th>
+            <th>
+                Rating
+            </th>
+            <th>
+                Studie
+            </th>
+        </tr>
+        @foreach (var a in ViewBag.Answers)
+        {
+            <tr>
+                <td>@a.Text</td>
+                <td>@a.Rating</td>
+                <td>@a.studyId</td>
+            </tr>
+        }
+    </table>
+    
+    
+    <h3>Overzicht studies per id</h3>
+    <table>
+        @foreach (var study in ViewBag.Study)
+        {
+            <tr>
+                <td>@study.Id</td>
+                <td>@study.Name</td>
+            </tr>
+        }
+    </table>
+}
+

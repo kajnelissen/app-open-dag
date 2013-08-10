@@ -25,6 +25,10 @@ namespace OpenDagAppBackEnd.Controllers
         public ActionResult Details(Int32 id)
         {
             Survey survey = db.Survey.Find(id);
+            if (survey.Questions.Count > 0)
+            {
+                ViewBag.Questions = db.Question.ToList().Where(a => a.SurveyId == survey.Id);
+            }
 
             if (survey == null)
             {
