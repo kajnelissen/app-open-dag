@@ -165,6 +165,7 @@
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\StudyController.cs" />
     <Compile Include="Controllers\StudyInformationController.cs" />
+    <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="Controllers\TimeTableController.cs" />
     <Compile Include="Controllers\TimeTableEntryController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -213,6 +214,7 @@
     <Content Include="img\glyphicons-halflings-white.png" />
     <Content Include="img\glyphicons-halflings.png" />
     <Content Include="Scripts\AddBBCode.js" />
+    <Content Include="Scripts\Bbc2Html.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />

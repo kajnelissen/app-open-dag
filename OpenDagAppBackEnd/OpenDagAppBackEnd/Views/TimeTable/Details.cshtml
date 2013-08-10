@@ -16,7 +16,41 @@
 
 		<dd>
 			@Html.DisplayFor(model => model.Date)
-		</dd>
+		</dd><br /><br />
+
+        
+
+        @if(ViewBag.TimeTableEntries != null){
+            <table border="1">
+            <tr>
+                <th>
+                    Activiteit
+                </th>
+                <th>
+                    Beschrijving
+                </th>
+                <th>
+                    Locatie
+                </th>
+                <th>
+                    Begintijd
+                </th>
+                <th>
+                    Eindtijd
+                </th>
+            </tr>
+            @foreach (var a in ViewBag.TimeTableEntries)
+            {
+                <tr>
+                    <td>@a.StartTime</td>
+                    <td>@a.EndTime</td>
+                    <td>@a.Title</td>
+                    <td>@a.Description</td>
+                    <td>@a.Location</td>
+                </tr>
+            }
+            </table>
+        }
 
 	</dl>
 </fieldset>

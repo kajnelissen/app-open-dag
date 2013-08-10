@@ -26,6 +26,7 @@ namespace OpenDagAppBackEnd.Controllers
         public ActionResult Details(Int32 id)
         {
             StudyInformation studyinformation = db.StudyInformation.Find(id);
+            ViewBag.Study = db.Study.Find(studyinformation.StudyId).Name;
             if (studyinformation == null)
             {
                 return HttpNotFound();
@@ -92,6 +93,7 @@ namespace OpenDagAppBackEnd.Controllers
         public ActionResult Delete(Int32 id)
         {
             StudyInformation studyinformation = db.StudyInformation.Find(id);
+            ViewBag.Study = db.Study.Find(studyinformation.StudyId).Name;
             if (studyinformation == null)
             {
                 return HttpNotFound();

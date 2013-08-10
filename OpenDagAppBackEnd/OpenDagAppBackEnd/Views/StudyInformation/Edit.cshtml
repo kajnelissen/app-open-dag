@@ -4,19 +4,50 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<head runat="server">
+    <link rel="stylesheet" type="text/css" href="~/Content/main.css" />
+    <script type="text/javascript">
+        document.write(["\<script type='text/javascript' src='",
+        ("https:" == document.location.protocol) ? "https://" : "http://",
+        "ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js'>\<\/script>"].join(''));
+    </script>
 
+    <!--<script src="jquery-1.8.2.js"></script>-->
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var bbfield = document.getElementById('bb-post-field');
+
+            bbfield.onkeydown = bbfield.onkeypress = function () {
+
+                // hier moet nog een conversie van BB Code naar HTML komen
+                // dat is een script dat je nog even ergens moet gaan zoeken op GitHub ofzo
+                // zoek op BBCode Parser JavaScript ofzo
+                var results = BBC2HTML(this.value);
+                document.getElementById('preview').innerHTML = results;
+                //document.getElementById('preview').innerHTML = this.value;
+            }
+        });
+    </script>
+
+    <title></title>
+</head>
+
+<h2>Edit</h2>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset class="form-horizontal">
-        <legend>StudyInformation</legend>
+    @*<fieldset class="form-horizontal">*@
+    <form>        
+        <legend><h3>StudyInformation</h3></legend>
 
         @Html.HiddenFor(model => model.Id)
 
         <div class="control-group">
-            @Html.LabelFor(model => model.Title, new { @class = "control-label" })
+            <b>Naam</b>
+            @*@Html.LabelFor(model => model.Title, new { @class = "control-label" })*@
 			<div class="controls">
 				@Html.EditorFor(model => model.Title)
 				@Html.ValidationMessageFor(model => model.Title, null, new { @class = "help-inline" })
@@ -24,15 +55,19 @@
 		</div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.Content, new { @class = "control-label" })
+            <b>Informatie</b>
+            @*@Html.LabelFor(model => model.Content, new { @class = "control-label" })*@
 			<div class="controls">
-				@Html.EditorFor(model => model.Content)
+				@*@Html.EditorFor(model => model.Content)*@
+                @Html.TextAreaFor(model => model.Content, new { id = "bb-post-field" })
+                <div style="border: 1px solid #000; background-color: #eee; padding: 20px; min-height: 60px;" id="preview"></div>
 				@Html.ValidationMessageFor(model => model.Content, null, new { @class = "help-inline" })
 			</div>
 		</div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.StudyId, "Study", new { @class = "control-label" })
+            <b>Studie</b>
+            @*@Html.LabelFor(model => model.StudyId, "Study", new { @class = "control-label" })*@
 			<div class="controls">
 				@Html.DropDownList("StudyId", String.Empty)
 				@Html.ValidationMessageFor(model => model.StudyId, null, new { @class = "help-inline" })
@@ -42,7 +77,20 @@
         <div class="form-actions no-color">
             <input type="submit" value="Save" class="btn" />
         </div>
-    </fieldset>
+        </form>
+        <div class="form-help-panel clearfix">
+            <h3>BB Code</h3>
+            <button title="Plaatje" id="bb-img">img</button>
+            <button id="bb-b">b</button>
+            <button id="bb-i">i</button>
+            <button id="bb-u">u</button>
+            <button id="bb-url">url</button>
+            <button id="bb-list">list</button>
+            <button id="bb-asterisk">*</button>
+            <button id="bb-color">color</button>
+            <button id="bb-quote">quote</button>
+        </div>
+    @*</fieldset>*@
 }
 
 <div>

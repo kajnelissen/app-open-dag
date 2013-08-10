@@ -9,105 +9,100 @@ using OpenDagAppBackEnd.Models;
 
 namespace OpenDagAppBackEnd.Controllers
 {
-    public class TimeTableController : Controller
+    public class SurveyController : Controller
     {
         private OpenDagAppBackEndContext db = new OpenDagAppBackEndContext();
 
         //
-        // GET: /TimeTable/
+        // GET: /Survey/
         public ActionResult Index()
         {
-            return View(db.TimeTable.ToList());
+            return View(db.Survey.ToList());
         }
 
         //
-        // GET: /TimeTable/Details/5
+        // GET: /Survey/Details/5
         public ActionResult Details(Int32 id)
         {
-            TimeTable timetable = db.TimeTable.Find(id);
+            Survey survey = db.Survey.Find(id);
 
-            if (timetable.TimeTableEntries.Count != 0)
-            {
-                ViewBag.TimeTableEntries = db.TimeTableEntry.ToList().Where(a => a.TimeTable.Id == timetable.Id);
-            }
-
-            if (timetable == null)
+            if (survey == null)
             {
                 return HttpNotFound();
             }
-            return View(timetable);
+            return View(survey);
         }
 
         //
-        // GET: /TimeTable/Create
+        // GET: /Survey/Create
         public ActionResult Create()
         {
             return View();
         }
 
         //
-        // POST: /TimeTable/Create
+        // POST: /Survey/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(TimeTable timetable)
+        public ActionResult Create(Survey survey)
         {
             if (ModelState.IsValid)
             {
-                db.TimeTable.Add(timetable);
+                db.Survey.Add(survey);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(timetable);
+            return View(survey);
         }
 
         //
-        // GET: /TimeTable/Edit/5
+        // GET: /Survey/Edit/5
         public ActionResult Edit(Int32 id)
         {
-            TimeTable timetable = db.TimeTable.Find(id);
-            if (timetable == null)
+            Survey survey = db.Survey.Find(id);
+            if (survey == null)
             {
                 return HttpNotFound();
             }
-            return View(timetable);
+            return View(survey);
         }
 
         //
-        // POST: /TimeTable/Edit/5
+        // POST: /Survey/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(TimeTable timetable)
+        public ActionResult Edit(Survey survey)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(timetable).State = EntityState.Modified;
+                db.Entry(survey).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(timetable);
+            return View(survey);
         }
 
         //
-        // GET: /TimeTable/Delete/5
+        // GET: /Survey/Delete/5
         public ActionResult Delete(Int32 id)
         {
-            TimeTable timetable = db.TimeTable.Find(id);
-            if (timetable == null)
+            Survey survey = db.Survey.Find(id);
+            if (survey == null)
             {
                 return HttpNotFound();
             }
-            return View(timetable);
+            return View(survey);
         }
 
         //
-        // POST: /TimeTable/Delete/5
+        // POST: /Survey/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Int32 id)
         {
-            TimeTable timetable = db.TimeTable.Find(id);
-            db.TimeTable.Remove(timetable);
+            Survey survey = db.Survey.Find(id);
+            db.Survey.Remove(survey);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

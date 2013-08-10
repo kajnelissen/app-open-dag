@@ -20,7 +20,8 @@ namespace OpenDagAppBackEnd
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
-                        "~/Scripts/AddBBCode.js"));
+                        "~/Scripts/AddBBCode.js",
+                        "~/Scripts/Bbc2Html.js"));
 
             /*bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

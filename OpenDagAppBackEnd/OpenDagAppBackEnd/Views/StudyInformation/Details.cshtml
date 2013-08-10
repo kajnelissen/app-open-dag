@@ -7,10 +7,11 @@
 <h2>Details</h2>
 
 <fieldset>
-	<legend>StudyInformation</legend>
+	<legend><h3>StudyInformation</h3></legend>
 	<dl>
 		<dt>
-			@Html.DisplayNameFor(model => model.Title)
+            <b>Naam</b>
+			@*@Html.DisplayNameFor(model => model.Title)*@
 		</dt>
 
 		<dd>
@@ -18,7 +19,8 @@
 		</dd>
 
 		<dt>
-			@Html.DisplayNameFor(model => model.Content)
+            <b>Informatie</b>
+			@*@Html.DisplayNameFor(model => model.Content)*@
 		</dt>
 
 		<dd>
@@ -26,11 +28,13 @@
 		</dd>
 
 		<dt>
-			@Html.DisplayNameFor(model => model.Study.Name)
+            <b>Studie</b>
+			@*@Html.DisplayNameFor(model => model.Study.Name)*@
 		</dt>
 
 		<dd>
-			@Html.DisplayFor(model => model.Study.Name)
+            @ViewBag.Study
+			@*@Html.DisplayFor(model => model.Study.Name)*@
 		</dd>
 
 	</dl>

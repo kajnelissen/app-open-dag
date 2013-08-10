@@ -16,13 +16,16 @@
     
     <script type="text/javascript">
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             var bbfield = document.getElementById('bb-post-field');
-            bbfield.onkeydown = bbfield.onkeypress = function () {
+            //bbfield.onkeydown = bbfield.onkeypress = function () {
+                bbfield.onkeypress = bbfield.onkeypress = function () {
                 // hier moet nog een conversie van BB Code naar HTML komen
                 // dat is een script dat je nog even ergens moet gaan zoeken op GitHub ofzo
                 // zoek op BBCode Parser JavaScript ofzo
-                document.getElementById('preview').innerHTML = this.value;
+                var results = BBC2HTML(this.value);
+                document.getElementById('preview').innerHTML = results;
+                //document.getElementById('preview').innerHTML = this.value;
             }
         });
 
@@ -42,10 +45,11 @@
 
     @*<fieldset class="form-horizontal">*@
     <form>
-        <legend>StudyInformation</legend>
+        <legend><h3>StudyInformation</h3></legend>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.Title, new { @class = "control-label" })
+            <b>Naam</b>
+            @*@Html.LabelFor(model => model.Title, new { @class = "control-label" })*@
 			<div class="controls">
 				@Html.EditorFor(model => model.Title)
 				@Html.ValidationMessageFor(model => model.Title, null, new { @class = "help-inline" })
@@ -53,7 +57,8 @@
 		</div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.Content, new { @class = "control-label" })
+            <b>Informatie</b>
+            @*@Html.LabelFor(model => model.Content, new { @class = "control-label" })*@
 			<div class="controls">
                 @Html.TextAreaFor(model => model.Content, new { id = "bb-post-field" })
                 <div style="border: 1px solid #000; background-color: #eee; padding: 20px; min-height: 60px;" id="preview"></div>
@@ -62,7 +67,8 @@
 		</div>
 
         <div class="control-group">
-            @Html.LabelFor(model => model.StudyId, "Study", new { @class = "control-label" })
+            <b>Studie</b>
+            @*@Html.LabelFor(model => model.StudyId, "Study", new { @class = "control-label" })*@
 			<div class="controls">
 				@Html.DropDownList("StudyId", String.Empty)
 				@Html.ValidationMessageFor(model => model.StudyId, null, new { @class = "help-inline" })
