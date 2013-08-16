@@ -45,6 +45,7 @@ namespace OpenDagAppBackEnd.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            // comment
             modelBuilder.Entity<Answer>()
                         .HasMany<Study>(e => e.)
                         .WithMany(u => u.AnswerStudies)
