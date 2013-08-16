@@ -18,11 +18,6 @@ namespace OpenDagAppBackEnd.Models
 
         public Question Question { get; set; }
 
-        public int studyId { get; set; }
-
-        //public Study Study { get; set; }
-
-        public int Rating { get; set; }
-        //public IDictionary<Study, int> StudyRatings { get; set; }
+        public virtual ICollection<AnswerStudy> AnswerStudies { get; set; }
     }
 }

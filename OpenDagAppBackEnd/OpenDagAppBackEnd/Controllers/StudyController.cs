@@ -25,6 +25,7 @@ namespace OpenDagAppBackEnd.Controllers
         public ActionResult Details(Int32 id)
         {
             Study study = db.Study.Find(id);
+            //ViewBag.studyInformation = db.StudyInformation.Find(study.)
             if (study == null)
             {
                 return HttpNotFound();

@@ -18,6 +18,8 @@ namespace OpenDagAppBackEnd.Models
         // System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<OpenDagAppBackEnd.Models.OpenDagAppBackEndContext>());
 
         public OpenDagAppBackEndContext() : base("name=OpenDagAppBackEndContext")
+        //public OpenDagAppBackEndContext()
+        //    : base("name=DB_9AA598_opendagzuydict")
         {
         }
 
@@ -38,5 +40,27 @@ namespace OpenDagAppBackEnd.Models
         public DbSet<OpenDagAppBackEnd.Models.TimeTableEntry> TimeTableEntry { get; set; }
 
         public DbSet<OpenDagAppBackEnd.Models.Study> Study { get; set; }
+
+        public DbSet<OpenDagAppBackEnd.Models.AnswerStudy> AnswerStudy { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Answer>()
+                        .HasMany<Study>(e => e.)
+                        .WithMany(u => u.AnswerStudies)
+                        .Map(m =>
+                        {
+                            m.ToTable("AnswerStudies");
+                            m.MapLeftKey("AnswerID");
+                            m.MapRightKey("StudyID");
+                        });
+            
+            modelBuilder.Entity<AnswerStudy>()
+                        .HasRequired(a => a.Answer)
+                        .WithMany(b => b.AnswerStudies);
+            modelBuilder.Entity<AnswerStudy>()
+                        .HasRequired(a => a.Study)
+                        .WithMany(b => b.AnswerStudies);    // b => b.ArmorialAwards
+        }
     }
 }

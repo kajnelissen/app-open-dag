@@ -190,6 +190,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Answer.cs" />
+    <Compile Include="Models\AnswerStudy.cs" />
     <Compile Include="Models\NavigationRoute.cs" />
     <Compile Include="Models\NavigationTrack.cs" />
     <Compile Include="Models\OpenDagAppBackEndContext.cs" />
@@ -229,6 +230,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <None Include="Properties\PublishProfiles\opendagzuydict.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
