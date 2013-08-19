@@ -11,11 +11,11 @@ namespace OpenDagAppBackEnd.Models
     {
         [Key, Column(Order = 0)]
         [ForeignKey("Answer")]
-        public Guid AnswerID { get; set; }
+        public int AnswerId { get; set; }
 
         [Key, Column(Order = 1)]
         [ForeignKey("Study")]
-        public Guid StudyID { get; set; }
+        public int StudyId { get; set; }
 
         public Answer Answer { get; set; }
         public Study Study { get; set; }
