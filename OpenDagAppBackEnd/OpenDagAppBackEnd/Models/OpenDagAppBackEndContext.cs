@@ -46,22 +46,44 @@ namespace OpenDagAppBackEnd.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             // comment
-            modelBuilder.Entity<Answer>()
+            /*modelBuilder.Entity<Answer>()
                         .HasMany<Study>(e => e.)
-                        .WithMany(u => u.AnswerStudies)
+                        //.WithMany(u => u.AnswerStudies)
                         .Map(m =>
                         {
                             m.ToTable("AnswerStudies");
                             m.MapLeftKey("AnswerID");
                             m.MapRightKey("StudyID");
-                        });
-            
+                        });*/
+            /*modelBuilder.Entity<Answer>()
+                .HasMany(t => t.AnswerStudies)
+                .WithMany(t => t.)
+                .Map(m =>
+                {
+                    m.ToTable("AnswerStudies");
+                    m.MapLeftKey("AnswerID");
+                    m.MapRightKey("StudyID");
+                });*/
+
             modelBuilder.Entity<AnswerStudy>()
+               .HasKey(cp => new { cp.AnswerId, cp.StudyId });
+
+            modelBuilder.Entity<Answer>()
+                        .HasMany(a => a.AnswerStudies)
+                        .WithRequired()
+                        .HasForeignKey(cp => cp.AnswerId);
+
+            modelBuilder.Entity<Study>()
+                        .HasMany(p => p.AnswerStudies)
+                        .WithRequired()
+                        .HasForeignKey(cp => cp.StudyId);  
+            
+            /*modelBuilder.Entity<AnswerStudy>()
                         .HasRequired(a => a.Answer)
                         .WithMany(b => b.AnswerStudies);
             modelBuilder.Entity<AnswerStudy>()
                         .HasRequired(a => a.Study)
-                        .WithMany(b => b.AnswerStudies);    // b => b.ArmorialAwards
+                        .WithMany(b => b.AnswerStudies);*/    // b => b.ArmorialAwards
         }
     }
 }
