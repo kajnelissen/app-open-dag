@@ -21,6 +21,39 @@ namespace OpenDagAppBackEnd.Controllers
             return View(question.ToList());
         }
 
+        public ActionResult CreateAnswerStudy()
+        {
+            ViewBag.SurveyId = db.Survey;
+            //ViewBag.SurveyId = new SelectList(db.Survey, "Id", "Name");
+
+            List<Study> studies = db.Study.ToList();
+            ViewBag.StudyId = studies;
+            List<Answer> s = db.Answer.ToList();
+            ViewBag.AnswerId = s;
+            return View(db.Study);
+        }
+
+        [HttpPost]
+        public ActionResult AddAnswerStudies(Question q, Answer[] a, AnswerStudy[] astudies)
+        {
+            db.Question.Add(q);
+            db.SaveChanges();
+
+            for (int index = 0; index < a.Length; index++)
+            {
+                a[index].QuestionId = q.Id;
+                db.Answer.Add(a[index]);
+                db.SaveChanges();
+
+                astudies[index].AnswerId = a[index].Id;
+                astudies[index].Answer = a[index];
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+            //return Json(null, JsonRequestBehavior.AllowGet);
+        }
+
         //
         // GET: /Question/Details/5
         public ActionResult Details(Int32 id)
@@ -47,6 +80,29 @@ namespace OpenDagAppBackEnd.Controllers
         {
             ViewBag.SurveyId = new SelectList(db.Survey, "Id", "Name");
             return View();
+        }
+
+        //
+        // GET: /Question/CreateQuestions
+        public ActionResult CreateQuestions()
+        {
+            List<Survey> surveys = db.Survey.ToList();
+            ViewBag.SurveyId = surveys;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddQuestions(Question[] q)
+        {
+            foreach (Question q1 in q)
+            {
+                db.Question.Add(q1);
+                db.SaveChanges();
+
+            }
+            return RedirectToAction("Index");
+
+            //return View(q);
         }
 
         //

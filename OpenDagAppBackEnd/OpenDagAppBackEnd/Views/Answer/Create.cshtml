@@ -4,64 +4,92 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<div class="bodyForms">
+    <h2>Create</h2>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-    <fieldset class="form-horizontal">
-        <legend>Answer</legend>
+        <fieldset class="form-horizontal">
+            <legend>Answer</legend>
 
-        <div class="control-group">
-            <b>Antwoord mogelijkheid</b>
-            @*@Html.LabelFor(model => model.Text, new { @class = "control-label" })*@
-			<div class="controls">
-				@Html.EditorFor(model => model.Text)
-				@Html.ValidationMessageFor(model => model.Text, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Text, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Text)
+                    @Html.ValidationMessageFor(model => model.Text, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <div class="control-group">
-            @*@Html.LabelFor(model => model.QuestionId, "Question", new { @class = "control-label" })*@
-            <b>Vraag</b>
-        <div class="controls">
-            @Html.DropDownList("QuestionId", String.Empty)
-            @Html.ValidationMessageFor(model => model.QuestionId, null, new { @class = "help-inline" })
-        </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.QuestionId, "Question", new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownList("QuestionId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.QuestionId, null, new { @class = "help-inline" })
+                </div>
+            </div>
+
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Create" class="btn" />
+            </div>
+        </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
     </div>
-
-    <div class="control-group">
-        @*@Html.LabelFor(model => model.studyId, new { @class = "control-label" })*@
-            <b>Studie</b>
-			<div class="controls">
-                @Html.DropDownList("StudyId", String.Empty)
-				@*@Html.EditorFor(model => model.studyId)*@
-				@Html.ValidationMessageFor(model => model.studyId, null, new { @class = "help-inline" })
-			</div>
-		</div>
-
-        <div class="control-group">
-            <b>Rating</b>
-            @*@Html.LabelFor(model => model.Rating, new { @class = "control-label" })*@
-			<div class="controls">
-				@Html.EditorFor(model => model.Rating)
-				@Html.ValidationMessageFor(model => model.Rating, null, new { @class = "help-inline" })
-			</div>
-		</div>
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Create" class="btn" />
-        </div>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
 
+
+@*model OpenDagAppBackEnd.Models.AnswerStudy
+
+    @{
+        ViewBag.Title = "Create";
+    }
+
+    <h2>Create</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset class="form-horizontal">
+            <legend>Answer</legend>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Answer.Text, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Answer.Text)
+                    @Html.ValidationMessageFor(model => model.Answer.Text, null, new { @class = "help-inline" })
+                </div>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Answer.Question.Text, "Question", new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownList("QuestionId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.Answer.Question.Text, null, new { @class = "help-inline" })
+                </div>
+            </div>
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Create" class="btn" />
+            </div>
+        </fieldset>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@

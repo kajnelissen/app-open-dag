@@ -4,47 +4,49 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="bodyForms">
+    <h2>Details</h2>
 
-<fieldset>
-	<legend>Survey</legend>
-	<dl>
-		<dt>
-			@Html.DisplayNameFor(model => model.Name)
-		</dt>
+    <fieldset>
+        <legend>Survey</legend>
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Name)
-		</dd>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-		<dt>
-			@Html.DisplayNameFor(model => model.Active)
-		</dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Active)
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Active)
-		</dd>
+            <dd>
+                @Html.DisplayFor(model => model.Active)
+            </dd>
 
-	</dl>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </dl>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 
-@if (ViewBag.Questions != null)
-{
-    <table border="1">
-        <tr>
-            <th>
-                Vraag
-            </th>
-        </tr>
-        @foreach (var a in ViewBag.Questions)
-        {
+    @if (ViewBag.Questions != null)
+    {
+        <table border="1">
             <tr>
-                <td>@a.Text</td>
+                <th>
+                    Vraag
+                </th>
             </tr>
-        }
-    </table>
-}
+            @foreach (var a in ViewBag.Questions)
+            {
+                <tr>
+                    <td>@a.Text</td>
+                </tr>
+            }
+        </table>
+    }
+</div>
