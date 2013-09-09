@@ -1,0 +1,78 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "CreateAnswerStudy";
+}
+
+<script src="../Scripts/jquery-1.8.2.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var questions = [];
+        $("#btn_send").click(function () {
+            $(".list-item").each(function () {
+                var question = {
+                    Text: $(this).val(),
+                    SurveyId: $("#surveyselect").val()
+                }
+                questions.push(question);
+            })
+
+            $.ajax({
+                type: "POST",
+                url: "../Question/AddQuestions",
+                datatype: "json",
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    q: questions
+                }),
+                success: function () {
+                    console.log("Gelukt");
+                },
+                error: function () {
+                    console.log("Mislukt");
+                }
+            });
+        });
+
+        $("#btn_add_questions").click(function () {
+            var newInput = $("<li class=\"question\"><input type=\"text\" class=\"list-item\" /></li>");
+            $("#question-list").append(newInput);
+        });
+    });
+</script>
+
+<div class="bodyForms">
+    @using (Html.BeginForm("", "", FormMethod.Post, new { id = "createQuestionForm" }))
+    {
+        <table>
+            <tr>
+                <td>Survey: </td>
+                <td>
+                    <select id="surveyselect">
+                        @foreach (var survey in (List<OpenDagAppBackEnd.Models.Survey>)ViewBag.SurveyId)
+                        {
+                            <option value="@survey.Id">@survey.Name</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+        <h2>Vragen</h2>
+        <div id="question-container">
+            <ul id="question-list">
+                <li class="question"><input type="text" class="list-item" /></li>
+            </ul>
+        </div>
+        
+        <input type="button" id="btn_add_questions" value="more..." /><br />
+        <input type="button" id="btn_send" value="Create" />
+
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+
+</div>

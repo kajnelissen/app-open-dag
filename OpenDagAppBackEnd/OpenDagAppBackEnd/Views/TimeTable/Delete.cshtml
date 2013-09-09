@@ -4,29 +4,32 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="bodyForms">
+    <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend><h3>TimeTable</h3></legend>
+    <h3>Are you sure you want to delete this?</h3>
+    <fieldset>
+        <legend><h3>TimeTable</h3></legend>
 
-	<dl>
-		<dt>
-            <b>Datum</b>
-			@*@Html.DisplayNameFor(model => model.Date)*@
-		</dt>
+        <dl>
+            <dt>
+                <b>Datum</b>
+                @*@Html.DisplayNameFor(model => model.Date)*@
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Date)
-		</dd>
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
 
-	</dl>
-</fieldset>
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
+        </dl>
+    </fieldset>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn" /> |
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-}
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

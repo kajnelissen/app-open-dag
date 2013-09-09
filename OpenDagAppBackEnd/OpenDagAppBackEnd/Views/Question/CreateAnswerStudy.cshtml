@@ -1,0 +1,130 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "CreateAnswerStudy";
+}
+
+<script src="../Scripts/jquery-1.8.2.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btn_send").click(function () {
+            var answerstudies = [];
+            var answers = [];
+
+            $(".studyAnswers").each(function () {
+                if ($(this).find("#rbAnswer").val() == "newAnswer") {
+                    console.log("selected newAnswer");
+                } else {
+                    console.log("selected oldAnswer");
+                }
+
+                var answerstudie = {
+                    StudyId: $(this).find("#study").val(),
+                    Rating: $(this).find("#result").val()
+                }
+
+                var answer = {
+                    Text: $(this).find("#newAnswer").val()
+                }
+
+                answerstudies.push(answerstudie);
+                answers.push(answer);
+            })
+
+            var question = {
+                Text: $("#questionField").val(),
+                SurveyId: $("#surveyselect").val()
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "../Question/AddAnswerStudies",
+                datatype: "json",
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    q: question,
+                    astudies: answerstudies,
+                    a: answers
+                }),
+                success: function () {
+                    console.log("Gelukt");
+                },
+                error: function () {
+                    console.log("Mislukt");
+                }
+            });
+
+
+            //};
+        });
+    });
+</script>
+
+<div class="bodyForms">
+    @using (Html.BeginForm("", "", FormMethod.Post, new { id = "createQuestionForm" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset class="form-horizontal">
+            <legend><b>Question</b></legend>
+
+            <table>
+                <tr>
+                    <td>Vraag</td>
+                    <td> <input type="text" id="questionField" name="quetionField" /></td>
+                </tr>
+                <tr>
+                    <td>Survey</td>
+                    <td>
+                        <select id="surveyselect">
+                            @foreach (var survey in ViewBag.SurveyId)
+                            {
+                                <option value="@survey.Id">@survey.Name</option>
+                            }
+                        </select>
+
+                    </td>
+                </tr>
+
+            </table>
+
+            <hr />
+
+            @foreach (var study in (List<OpenDagAppBackEnd.Models.Study>)ViewBag.StudyId)
+            {
+                <div class="studyAnswers">
+                    <input type="text" id="study" value="@study.Id" disabled="disabled" hidden="hidden" />
+                    <h3>@study.Name</h3>
+                    <table>
+                        <tr>
+                            <td>Antwoord</td>
+                            <td><input type="radio" id="rbAnswer" name="rbButton" value="newAnswer"  /> nieuw antwoord:<input type="text" id="newAnswer" /></td>
+                            <td>
+                                <input type="radio" id="rbAnswer" name="rbButton" value="exist" /> bestaand antwoord:
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>beoordeling</th>
+                        </tr>
+
+                        <tr>
+                            <td><input type="range" id="result" min="1" max="10" /></td>
+                        </tr>
+                    </table>
+                </div>
+                <hr />
+            }
+
+            <input type="button" value="Create" id="btn_send" />
+        </fieldset>
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+
+</div>

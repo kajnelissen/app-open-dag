@@ -4,48 +4,51 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="bodyForms">
+    <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend><h3>StudyInformation</h3></legend>
+    <h3>Are you sure you want to delete this?</h3>
+    <fieldset>
+        <legend><h3>StudyInformation</h3></legend>
 
-	<dl>
-		<dt>
-            <b>Naam</b>
-			@*@Html.DisplayNameFor(model => model.Title)*@
-		</dt>
+        <dl>
+            <dt>
+                <b>Naam</b>
+                @*@Html.DisplayNameFor(model => model.Title)*@
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Title)
-		</dd>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
 
-		<dt>
-            <b>Informatie</b>
-			@*@Html.DisplayNameFor(model => model.Content)*@
-		</dt>
+            <dt>
+                <b>Informatie</b>
+                @*@Html.DisplayNameFor(model => model.Content)*@
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Content)
-		</dd>
+            <dd>
+                @Html.DisplayFor(model => model.Content)
+            </dd>
 
-		<dt>
-            <b>Studie</b>
-			@*@Html.DisplayNameFor(model => model.Study.Name)*@
-		</dt>
+            <dt>
+                <b>Studie</b>
+                @*@Html.DisplayNameFor(model => model.Study.Name)*@
+            </dt>
 
-		<dd>
-            @ViewBag.Study
-			@*@Html.DisplayFor(model => model.Study.Name)*@
-		</dd>
+            <dd>
+                @ViewBag.Study
+                @*@Html.DisplayFor(model => model.Study.Name)*@
+            </dd>
 
-	</dl>
-</fieldset>
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
+        </dl>
+    </fieldset>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn" /> |
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-}
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

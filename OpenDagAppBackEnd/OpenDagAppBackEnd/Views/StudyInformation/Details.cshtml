@@ -4,42 +4,44 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="bodyForms">
+    <h2>Details</h2>
 
-<fieldset>
-	<legend><h3>StudyInformation</h3></legend>
-	<dl>
-		<dt>
-            <b>Naam</b>
-			@*@Html.DisplayNameFor(model => model.Title)*@
-		</dt>
+    <fieldset>
+        <legend><h3>StudyInformation</h3></legend>
+        <dl>
+            <dt>
+                <b>Naam</b>
+                @*@Html.DisplayNameFor(model => model.Title)*@
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Title)
-		</dd>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
 
-		<dt>
-            <b>Informatie</b>
-			@*@Html.DisplayNameFor(model => model.Content)*@
-		</dt>
+            <dt>
+                <b>Informatie</b>
+                @*@Html.DisplayNameFor(model => model.Content)*@
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Content)
-		</dd>
+            <dd>
+                @Html.DisplayFor(model => model.Content)
+            </dd>
 
-		<dt>
-            <b>Studie</b>
-			@*@Html.DisplayNameFor(model => model.Study.Name)*@
-		</dt>
+            <dt>
+                <b>Studie</b>
+                @*@Html.DisplayNameFor(model => model.Study.Name)*@
+            </dt>
 
-		<dd>
-            @ViewBag.Study
-			@*@Html.DisplayFor(model => model.Study.Name)*@
-		</dd>
+            <dd>
+                @ViewBag.Study
+                @*@Html.DisplayFor(model => model.Study.Name)*@
+            </dd>
 
-	</dl>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </dl>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

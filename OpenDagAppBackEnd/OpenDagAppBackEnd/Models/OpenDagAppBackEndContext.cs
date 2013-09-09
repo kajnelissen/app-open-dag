@@ -17,9 +17,8 @@ namespace OpenDagAppBackEnd.Models
         // 
         // System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<OpenDagAppBackEnd.Models.OpenDagAppBackEndContext>());
 
-        public OpenDagAppBackEndContext() : base("name=OpenDagAppBackEndContext")
-        //public OpenDagAppBackEndContext()
-        //    : base("name=DB_9AA598_opendagzuydict")
+        //public OpenDagAppBackEndContext() : base("name=OpenDagAppBackEndContext")
+        public OpenDagAppBackEndContext() : base("name=DB_9AA598_opendagzuydfacict")
         {
         }
 
@@ -45,6 +44,12 @@ namespace OpenDagAppBackEnd.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<AnswerStudy>()
+                .HasRequired(x => x.Answer);
+
+            modelBuilder.Entity<AnswerStudy>()
+                .HasRequired(x => x.Study);
+
             // comment
             /*modelBuilder.Entity<Answer>()
                         .HasMany<Study>(e => e.)
@@ -65,10 +70,14 @@ namespace OpenDagAppBackEnd.Models
                     m.MapRightKey("StudyID");
                 });*/
 
-            modelBuilder.Entity<AnswerStudy>()
-               .HasKey(cp => new { cp.AnswerId, cp.StudyId });
+            /*modelBuilder.Entity<AnswerStudy>()
+               .HasKey(cp => new { cp.AnswerId, cp.StudyId });*/
 
-            modelBuilder.Entity<Answer>()
+            /*
+             * HIERONDER COMMENTAAR WEGHALEN
+             */
+
+            /*modelBuilder.Entity<Answer>()
                         .HasMany(a => a.AnswerStudies)
                         .WithRequired()
                         .HasForeignKey(cp => cp.AnswerId);
@@ -76,7 +85,7 @@ namespace OpenDagAppBackEnd.Models
             modelBuilder.Entity<Study>()
                         .HasMany(p => p.AnswerStudies)
                         .WithRequired()
-                        .HasForeignKey(cp => cp.StudyId);  
+                        .HasForeignKey(cp => cp.StudyId);  */
             
             /*modelBuilder.Entity<AnswerStudy>()
                         .HasRequired(a => a.Answer)
