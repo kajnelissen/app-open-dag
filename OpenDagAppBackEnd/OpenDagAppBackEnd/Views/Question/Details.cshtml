@@ -4,71 +4,73 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="bodyForms">
+    <h2>Details</h2>
 
-<fieldset>
-	<legend><b>Question</b></legend>
-	<dl>
-		<dt>
-            <b>Vraag</b>
-            @*<b>@Html.DisplayNameFor(model => model.Text)</b>*@
-		</dt>
+    <fieldset>
+        <legend><b>Question</b></legend>
+        <dl>
+            <dt>
+                <b>Vraag</b>
+                @*<b>@Html.DisplayNameFor(model => model.Text)</b>*@
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Text)
-		</dd>
+            <dd>
+                @Html.DisplayFor(model => model.Text)
+            </dd>
 
-		<dt>
-            <b>Survey Naam</b>
-            @*<b>@Html.DisplayNameFor(model => model.Survey.Name)</b>*@
-		</dt>
+            <dt>
+                <b>Survey Naam</b>
+                @*<b>@Html.DisplayNameFor(model => model.Survey.Name)</b>*@
+            </dt>
 
-		<dd>
-			@*@Html.DisplayFor(model => model.Survey.Name)*@
-            @ViewBag.SurveyName
-		</dd>
+            <dd>
+                @*@Html.DisplayFor(model => model.Survey.Name)*@
+                @ViewBag.SurveyName
+            </dd>
 
-	</dl>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </dl>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 
-@if (ViewBag.Answers != null)
-{
-    <table border="1">
-        <tr>
-            <th>
-                Antwoord
-            </th>
-            <th>
-                Rating
-            </th>
-            <th>
-                Studie
-            </th>
-        </tr>
-        @foreach (var a in ViewBag.Answers)
-        {
+    @if (ViewBag.Answers != null)
+    {
+        <table border="1">
             <tr>
-                <td>@a.Text</td>
-                <td>@a.Rating</td>
-                <td>@a.studyId</td>
+                <th>
+                    Antwoord
+                </th>
+                <th>
+                    Rating
+                </th>
+                <th>
+                    Studie
+                </th>
             </tr>
-        }
-    </table>
-    
-    
-    <h3>Overzicht studies per id</h3>
-    <table>
-        @foreach (var study in ViewBag.Study)
-        {
-            <tr>
-                <td>@study.Id</td>
-                <td>@study.Name</td>
-            </tr>
-        }
-    </table>
-}
+            @foreach (var a in ViewBag.Answers)
+            {
+                <tr>
+                    <td>@a.Text</td>
+                    <td>@a.Rating</td>
+                    <td>@a.studyId</td>
+                </tr>
+            }
+        </table>
 
+
+        <h3>Overzicht studies per id</h3>
+        <table>
+            @foreach (var study in ViewBag.Study)
+            {
+                <tr>
+                    <td>@study.Id</td>
+                    <td>@study.Name</td>
+                </tr>
+            }
+        </table>
+    }
+
+</div>

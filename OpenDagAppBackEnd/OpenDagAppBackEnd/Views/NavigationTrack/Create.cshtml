@@ -4,35 +4,37 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<div class="bodyForms">
+    <h2>Create</h2>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-    <fieldset class="form-horizontal">
-        <legend>NavigationTrack</legend>
+        <fieldset class="form-horizontal">
+            <legend>NavigationTrack</legend>
 
-        <div class="control-group">
-            @Html.LabelFor(model => model.RouteId, "Route", new { @class = "control-label" })
-			<div class="controls">
-				@Html.DropDownList("RouteId", String.Empty)
-				@Html.ValidationMessageFor(model => model.RouteId, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.RouteId, "Route", new { @class = "control-label" })
+                <div class="controls">
+                    @Html.DropDownList("RouteId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.RouteId, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Create" class="btn" />
-        </div>
-    </fieldset>
-}
+            <div class="form-actions no-color">
+                <input type="submit" value="Create" class="btn" />
+            </div>
+        </fieldset>
+    }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-

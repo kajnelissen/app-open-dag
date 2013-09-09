@@ -4,57 +4,62 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="bodyForms">
+    <h2>Details</h2>
 
-<fieldset>
-	<legend><h3>TimeTable</h3></legend>
-	<dl>
-		<dt>
-            <b>Datum</b>
-			@*@Html.DisplayNameFor(model => model.Date)*@
-		</dt>
+    <fieldset>
+        <legend><h3>TimeTable</h3></legend>
+        <dl>
+            <dt>
+                <b>Datum</b>
+                @*@Html.DisplayNameFor(model => model.Date)*@
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Date)
-		</dd><br /><br />
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+            <br />
+            <br />
 
-        
 
-        @if(ViewBag.TimeTableEntries != null){
-            <table border="1">
-            <tr>
-                <th>
-                    Begintijd
-                </th>
-                <th>
-                    Eindtijd
-                </th>
-                <th>
-                    Naam
-                </th>
-                <th>
-                    Beschrijving
-                </th>
-                <th>
-                    Locatie
-                </th>
-            </tr>
-            @foreach (var a in ViewBag.TimeTableEntries)
+
+            @if (ViewBag.TimeTableEntries != null)
             {
-                <tr>
-                    <td>@a.StartTime</td>
-                    <td>@a.EndTime</td>
-                    <td>@a.Title</td>
-                    <td>@a.Description</td>
-                    <td>@a.Location</td>
-                </tr>
+                <table border="1">
+                    <tr>
+                        <th>
+                            Begintijd
+                        </th>
+                        <th>
+                            Eindtijd
+                        </th>
+                        <th>
+                            Naam
+                        </th>
+                        <th>
+                            Beschrijving
+                        </th>
+                        <th>
+                            Locatie
+                        </th>
+                    </tr>
+                    @foreach (var a in ViewBag.TimeTableEntries)
+                    {
+                        <tr>
+                            <td>@a.StartTime</td>
+                            <td>@a.EndTime</td>
+                            <td>@a.Title</td>
+                            <td>@a.Description</td>
+                            <td>@a.Location</td>
+                        </tr>
+                    }
+                </table>
             }
-            </table>
-        }
 
-	</dl>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </dl>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

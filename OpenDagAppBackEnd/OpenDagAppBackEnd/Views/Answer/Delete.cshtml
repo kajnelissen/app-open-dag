@@ -4,58 +4,39 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="bodyForms">
+    <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend><h3>Answer</h3></legend>
+    <h3>Are you sure you want to delete this?</h3>
+    <fieldset>
+        <legend>Answer</legend>
 
-	<dl>
-		<dt>
-            <b>Antwoord</b>
-			@*@Html.DisplayNameFor(model => model.Text)*@
-		</dt>
+        <dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.Text)
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Text)
-		</dd>
+            <dd>
+                @Html.DisplayFor(model => model.Text)
+            </dd>
 
-		<dt>
-            <b>Vraag</b>
-			@*@Html.DisplayNameFor(model => model.Question.Text)*@
-		</dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Question.Text)
+            </dt>
 
-		<dd>
-            @ViewBag.Question
-			@*@Html.DisplayFor(model => model.Question.Text)*@
-		</dd>
+            <dd>
+                @Html.DisplayFor(model => model.Question.Text)
+            </dd>
 
-		<dt>
-            <b>Studie</b>
-			@*@Html.DisplayNameFor(model => model.studyId)*@
-		</dt>
+        </dl>
+    </fieldset>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-		<dd>
-			@*@Html.DisplayFor(model => model.studyId)*@
-            @ViewBag.Study
-		</dd>
-
-		<dt>
-            <b>Rating</b>
-			@*@Html.DisplayNameFor(model => model.Rating)*@
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Rating)
-		</dd>
-
-	</dl>
-</fieldset>
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-
-    <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn" /> |
-        @Html.ActionLink("Back to List", "Index")
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
     </div>
-}

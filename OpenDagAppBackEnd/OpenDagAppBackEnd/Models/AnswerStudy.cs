@@ -17,8 +17,8 @@ namespace OpenDagAppBackEnd.Models
         [ForeignKey("Study")]
         public int StudyId { get; set; }
 
-        public Answer Answer { get; set; }
-        public Study Study { get; set; }
+        public virtual Answer Answer { get; set; }
+        public virtual Study Study { get; set; }
         public int Rating { get; set; }
     }
 }

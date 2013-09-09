@@ -188,6 +188,10 @@
     <Compile Include="Migrations\201308082123301_EditAnswerModel.Designer.cs">
       <DependentUpon>201308082123301_EditAnswerModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201309071712329_addOverige.cs" />
+    <Compile Include="Migrations\201309071712329_addOverige.Designer.cs">
+      <DependentUpon>201309071712329_addOverige.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\AnswerStudy.cs" />
@@ -231,6 +235,7 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\opendagzuydict.pubxml" />
+    <None Include="Properties\PublishProfiles\opendagzuydict3.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -294,6 +299,8 @@
     <Content Include="Views\Answer\Details.cshtml" />
     <Content Include="Views\Answer\Edit.cshtml" />
     <Content Include="Views\Answer\Index.cshtml" />
+    <Content Include="Views\Question\CreateAnswerStudy.cshtml" />
+    <Content Include="Views\Question\CreateQuestions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -313,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201308082123301_EditAnswerModel.resx">
       <DependentUpon>201308082123301_EditAnswerModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201309071712329_addOverige.resx">
+      <DependentUpon>201309071712329_addOverige.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

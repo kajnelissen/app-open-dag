@@ -35,70 +35,71 @@
 </head>
 
 
+<div class="bodyForms">
+    <h2>Create</h2>
 
-<h2>Create</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+        @*<fieldset class="form-horizontal">*@
+        <form>
+            <legend><h3>StudyInformation</h3></legend>
 
-    @*<fieldset class="form-horizontal">*@
-    <form>
-        <legend><h3>StudyInformation</h3></legend>
-
-        <div class="control-group">
-            <b>Naam</b>
-            @*@Html.LabelFor(model => model.Title, new { @class = "control-label" })*@
-			<div class="controls">
-				@Html.EditorFor(model => model.Title)
-				@Html.ValidationMessageFor(model => model.Title, null, new { @class = "help-inline" })
-			</div>
-		</div>
-
-        <div class="control-group">
-            <b>Informatie</b>
-            @*@Html.LabelFor(model => model.Content, new { @class = "control-label" })*@
-			<div class="controls">
-                @Html.TextAreaFor(model => model.Content, new { id = "bb-post-field" })
-                <div style="border: 1px solid #000; background-color: #eee; padding: 20px; min-height: 60px;" id="preview"></div>
-				@Html.ValidationMessageFor(model => model.Content, null, new { @class = "help-inline" })
-			</div>
-		</div>
-
-        <div class="control-group">
-            <b>Studie</b>
-            @*@Html.LabelFor(model => model.StudyId, "Study", new { @class = "control-label" })*@
-			<div class="controls">
-				@Html.DropDownList("StudyId", String.Empty)
-				@Html.ValidationMessageFor(model => model.StudyId, null, new { @class = "help-inline" })
-			</div>
-		</div>
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Create" class="btn" />
-        </div>
-        </form>
-    <div class="form-help-panel clearfix">
-                <h3>BB Code</h3>
-                    <button title="Plaatje" id="bb-img">img</button>
-                    <button id="bb-b">b</button>
-                    <button id="bb-i">i</button>
-                    <button id="bb-u">u</button>
-                    <button id="bb-url">url</button>
-                    <button id="bb-list">list</button>
-                    <button id="bb-asterisk">*</button>
-                    <button id="bb-color">color</button>
-                    <button id="bb-quote">quote</button>
+            <div class="control-group">
+                <b>Naam</b>
+                @*@Html.LabelFor(model => model.Title, new { @class = "control-label" })*@
+                <div class="controls">
+                    @Html.EditorFor(model => model.Title)
+                    @Html.ValidationMessageFor(model => model.Title, null, new { @class = "help-inline" })
+                </div>
             </div>
-    @*</fieldset>*@
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+            <div class="control-group">
+                <b>Informatie</b>
+                @*@Html.LabelFor(model => model.Content, new { @class = "control-label" })*@
+                <div class="controls">
+                    @Html.TextAreaFor(model => model.Content, new { id = "bb-post-field" })
+                    <div style="border: 1px solid #000; background-color: #eee; padding: 20px; min-height: 60px;" id="preview"></div>
+                    @Html.ValidationMessageFor(model => model.Content, null, new { @class = "help-inline" })
+                </div>
+            </div>
+
+            <div class="control-group">
+                <b>Studie</b>
+                @*@Html.LabelFor(model => model.StudyId, "Study", new { @class = "control-label" })*@
+                <div class="controls">
+                    @Html.DropDownList("StudyId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.StudyId, null, new { @class = "help-inline" })
+                </div>
+            </div>
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Create" class="btn" />
+            </div>
+        </form>
+        <div class="form-help-panel clearfix">
+            <h3>BB Code</h3>
+            <button title="Plaatje" id="bb-img">img</button>
+            <button id="bb-b">b</button>
+            <button id="bb-i">i</button>
+            <button id="bb-u">u</button>
+            <button id="bb-url">url</button>
+            <button id="bb-list">list</button>
+            <button id="bb-asterisk">*</button>
+            <button id="bb-color">color</button>
+            <button id="bb-quote">quote</button>
+        </div>
+        @*</fieldset>*@
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
