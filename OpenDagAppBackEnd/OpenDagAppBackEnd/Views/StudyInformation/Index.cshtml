@@ -16,10 +16,10 @@
                 <b>Naam</b>
                 @*@Html.DisplayNameFor(model => model.Title)*@
             </th>
-            <th>
+            @*<th>
                 <b>Informatie</b>
-                @*@Html.DisplayNameFor(model => model.Content)*@
-            </th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>*@
             <th>
                 <b>Studie</b>
                 @*@Html.DisplayNameFor(model => model.Study.Name)*@
@@ -33,9 +33,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.Content)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Study.Name)
                 </td>

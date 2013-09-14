@@ -28,10 +28,6 @@
 
         </dl>
     </fieldset>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
 
     @if (ViewBag.Questions != null)
     {
@@ -45,8 +41,16 @@
             {
                 <tr>
                     <td>@a.Text</td>
+                    <td>@Html.ActionLink("Edit", "Edit", "Question", new { id = a.Id }, null)</td>
+                    <td>@Html.ActionLink("Details", "Details", "Question", new { id = a.Id }, null)</td>
+                    <td>@Html.ActionLink("Delete", "Delete", "Question", new { id = a.Id }, null)</td>
                 </tr>
             }
         </table>
     }
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </div>

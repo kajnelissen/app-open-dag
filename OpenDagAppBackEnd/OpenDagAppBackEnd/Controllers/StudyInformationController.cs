@@ -38,14 +38,15 @@ namespace OpenDagAppBackEnd.Controllers
         // GET: /StudyInformation/Create
         public ActionResult Create()
         {
-            ViewBag.StudyId = new SelectList(db.Study, "Id", "Name");
+            ViewBag.StudyId = db.Study.ToList();
+            //ViewBag.StudyId = new SelectList(db.Study, "Id", "Name");
             return View();
         }
 
         //
         // POST: /StudyInformation/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Create(StudyInformation studyinformation)
         {
             if (ModelState.IsValid)
@@ -68,14 +69,15 @@ namespace OpenDagAppBackEnd.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.StudyId = new SelectList(db.Study, "Id", "Name", studyinformation.StudyId);
+            //ViewBag.StudyId = new SelectList(db.Study, "Id", "Name", studyinformation.StudyId);
+            ViewBag.StudyId = db.Study.ToList();
             return View(studyinformation);
         }
 
         //
         // POST: /StudyInformation/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Edit(StudyInformation studyinformation)
         {
             if (ModelState.IsValid)

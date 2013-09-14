@@ -45,12 +45,20 @@ namespace OpenDagAppBackEnd.Controllers
             return View();
         }
 
+        public ActionResult CreateTimeTableEntry()
+        {
+            List<TimeTable> timeTable = db.TimeTable.ToList();
+            ViewBag.TimeTable = timeTable;
+            return View();
+        }
+
         //
         // POST: /TimeTableEntry/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(TimeTableEntry timetableentry)
         {
+
             if (ModelState.IsValid)
             {
                 db.TimeTableEntry.Add(timetableentry);
@@ -60,6 +68,28 @@ namespace OpenDagAppBackEnd.Controllers
 
             ViewBag.TimeTableId = new SelectList(db.TimeTable, "Id", "Id", timetableentry.TimeTableId);
             return View(timetableentry);
+        }
+
+        [HttpPost]
+        public ActionResult AddActivities(List<TimeTableEntry> timeTableEntries)
+        {
+            foreach (TimeTableEntry tte in timeTableEntries)
+            {
+                TimeTable tt = db.TimeTable.Find(tte.TimeTableId);
+                if (ModelState.IsValid)
+                {
+                    DateTime startDateTime = new DateTime(tt.Date.Year, tt.Date.Month, tt.Date.Day, tte.StartTime.TimeOfDay.Hours, tte.StartTime.TimeOfDay.Minutes, tte.StartTime.TimeOfDay.Seconds);
+                    DateTime endDateTime = new DateTime(tt.Date.Year, tt.Date.Month, tt.Date.Day, tte.EndTime.TimeOfDay.Hours, tte.EndTime.TimeOfDay.Minutes, tte.EndTime.TimeOfDay.Seconds);
+                    if (startDateTime < endDateTime)
+                    {
+                        tte.StartTime = startDateTime;
+                        tte.EndTime = endDateTime;
+                        db.TimeTableEntry.Add(tte);
+                        db.SaveChanges();
+                    }
+                }
+            }
+            return RedirectToAction("Index");
         }
 
         //
