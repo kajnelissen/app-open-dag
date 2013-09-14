@@ -1,0 +1,128 @@
+@model OpenDagAppBackEnd.Models.TimeTableEntry
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<script src="../Scripts/jquery-1.8.2.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var timeTableEntries = [];
+        var activities = [];
+        var descriptions = [];
+        var locations = [];
+        var starttimes = [];
+        var endtimes = [];
+
+        $("#btn_send_1").click(function () {
+            $(".activity").each(function () {
+                var activity = (this).value;
+                activities.push(activity);
+            });
+
+            $(".description").each(function () {
+                var description = (this).value;
+                descriptions.push(description);
+            });
+
+            $(".location").each(function () {
+                var location = (this).value;
+                locations.push(location);
+            });
+
+            $(".starttime").each(function () {
+                var starttime = (this).value;
+                starttimes.push(starttime);
+            });
+
+            $(".endtime").each(function () {
+                var endtime = (this).value;
+                endtimes.push(endtime);
+            });
+
+            for (var index = 0; index < activities.length; index++) {
+                var timeTableEntry = {
+                    Title: activities[index],
+                    Description: descriptions[index],
+                    Location: locations[index],
+                    StartTime: starttimes[index],
+                    EndTime: endtimes[index],
+                    TimeTableId: $("#timetableselect").val()
+                }
+                timeTableEntries.push(timeTableEntry);
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "../TimeTableEntry/AddActivities",
+                datatype: "json",
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    timeTableEntries: timeTableEntries
+                }),
+                success: function () {
+                    console.log("Gelukt");
+                },
+                error: function () {
+                    console.log("Mislukt");
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $("#btn_add_time_entries").click(function () {
+                var newInput = $("<li class=\"timetable-entry-item\"><tr><td><input type=\"text\" class=\"activity\" /></td><td><input type=\"text\" class=\"description\" /></td><td><input type=\"text\" class=\"location\" /></td><td><input type=\"time\" class=\"starttime\" /></td><td><input type=\"time\" class=\"endtime\" /></td></tr></li>");
+                $("#timtable-entry-list").append(newInput);
+            });
+        });
+    });
+</script>
+
+<div class="bodyForms">
+    <h2>Create</h2>
+
+    @using (Html.BeginForm())
+    {
+        <table>
+            <tr>
+                <td>Survey: </td>
+                <td>
+                    <select id="timetableselect">
+                        @foreach (var timetable in (List<OpenDagAppBackEnd.Models.TimeTable>)ViewBag.TimeTable)
+                        {
+                            <option value="@timetable.Id">@timetable.Date.Day-@timetable.Date.Month-@timetable.Date.Year</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+        <h2>Vragen</h2>
+        <div id="timetable-container">
+            <ul id="timtable-entry-list">
+                <table>
+                    <tr><th>Activiteit</th><th>Beschrijving</th><th>Locatie</th><th>Starttijd</th><th>Eindtijd</th></tr>
+                    <li class="timetable-entry-item">
+                        <tr>
+                            <td><input type="text" class="activity" /></td>
+                            <td><input type="text" class="description" /></td>
+                            <td><input type="text" class="location" /></td>
+                            <td><input type="time" class="starttime" /></td>
+                            <td><input type="time" class="endtime" /></td>
+                        </tr>
+                    </li>
+                </table>
+            </ul>
+        </div>
+
+        <input type="button" id="btn_add_time_entries" value="more..." /><br />
+        <input type="button" id="btn_send_1" value="Create" />
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+
+    }
+
+</div>

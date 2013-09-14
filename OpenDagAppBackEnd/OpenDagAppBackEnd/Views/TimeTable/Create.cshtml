@@ -4,6 +4,37 @@
     ViewBag.Title = "Create";
 }
 
+<script src="../Scripts/jquery-1.8.2.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btn_send").click(function () {
+            console.log("Button clicked!");
+            var timeTable = {
+                Date: $("#dateTest").val()
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "../TimeTable/CreateTimeTable",
+                datatype: "json",
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    timetable: timeTable
+                }),
+                success: function () {
+                    console.log("Gelukt");
+                },
+                error: function () {
+                    console.log("Mislukt");
+                }
+            });
+        });
+
+
+    });
+</script>
+
 <div class="bodyForms">
     <h2>Create</h2>
 
@@ -13,29 +44,16 @@
         @Html.ValidationSummary(true)
 
         <fieldset class="form-horizontal">
-            <legend><h3>TimeTable</h3></legend>
+            <h3>TimeTable</h3>
 
-            <div class="control-group">
-                <b>Datum</b>
-                @*@Html.LabelFor(model => model.Date, new { @class = "control-label" })*@
-                <div class="controls">
-                    @Html.EditorFor(model => model.Date)
-                    @Html.ValidationMessageFor(model => model.Date, null, new { @class = "help-inline" })
-                </div>
-            </div>
-
-            <div class="form-actions no-color">
-                <input type="submit" value="Create" class="btn" />
-            </div>
+            <b>Datum</b>
+            <input type="date" id="dateTest" /><br />
+            <input type="button" value="Create" id="btn_send" />
         </fieldset>
     }
 
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
 
 </div>
