@@ -4,103 +4,81 @@
     ViewBag.Title = "Edit";
 }
 
-<head runat="server">
-    <link rel="stylesheet" type="text/css" href="~/Content/main.css" />
-    <script type="text/javascript">
-        document.write(["\<script type='text/javascript' src='",
-        ("https:" == document.location.protocol) ? "https://" : "http://",
-        "ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js'>\<\/script>"].join(''));
-    </script>
+<script src="~/Scripts/jquery-1.8.2.js"></script>
+<script src="~/ckeditor/ckeditor.js"></script>
 
-    <!--<script src="jquery-1.8.2.js"></script>-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btn_send").click(function () {
+            var editor = CKEDITOR.instances['content'].getData();
 
-    <script type="text/javascript">
+            var studyInformation = {
+                Id: $("#informationId").val(),
+                Title: $("#name_information").val(),
+                Content: editor,
+                StudyId: $("#study_select").val()
+            };
 
-        $(document).ready(function () {
-            var bbfield = document.getElementById('bb-post-field');
-
-            bbfield.onkeydown = bbfield.onkeypress = function () {
-
-                // hier moet nog een conversie van BB Code naar HTML komen
-                // dat is een script dat je nog even ergens moet gaan zoeken op GitHub ofzo
-                // zoek op BBCode Parser JavaScript ofzo
-                var results = BBC2HTML(this.value);
-                document.getElementById('preview').innerHTML = results;
-                //document.getElementById('preview').innerHTML = this.value;
-            }
+            $.ajax({
+                type: "POST",
+                url: "../Edit",
+                datatype: "json",
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    studyinformation: studyInformation
+                }),
+                success: function () {
+                    console.log("Gelukt");
+                },
+                error: function () {
+                    console.log("Mislukt");
+                }
+            });
         });
-    </script>
-
-    <title></title>
-</head>
+    });
+</script>
 
 <div class="bodyForms">
-    <h2>Edit</h2>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
+    <p>
+        <h2>Edit</h2>
+    </p>
 
-        @*<fieldset class="form-horizontal">*@
-        <form>
-            <legend><h3>StudyInformation</h3></legend>
+    <p>
+        <input type="text" id="informationId" value="@Model.Id" hidden="hidden" />
+    </p>
 
-            @Html.HiddenFor(model => model.Id)
+    <p>
+        <b>Title</b><br />
+        <input type="text" id="name_information" value="@Model.Title" />
+    </p>
 
-            <div class="control-group">
-                <b>Naam</b>
-                @*@Html.LabelFor(model => model.Title, new { @class = "control-label" })*@
-                <div class="controls">
-                    @Html.EditorFor(model => model.Title)
-                    @Html.ValidationMessageFor(model => model.Title, null, new { @class = "help-inline" })
-                </div>
-            </div>
+    <p>
+        <b>Informatie</b>
+        <textarea class="ckeditor" cols="20" id="content" name="editor" rows="2">
+            @Model.Content
+        </textarea>
+    </p>
 
-            <div class="control-group">
-                <b>Informatie</b>
-                @*@Html.LabelFor(model => model.Content, new { @class = "control-label" })*@
-                <div class="controls">
-                    @*@Html.EditorFor(model => model.Content)*@
-                    @Html.TextAreaFor(model => model.Content, new { id = "bb-post-field" })
-                    <div style="border: 1px solid #000; background-color: #eee; padding: 20px; min-height: 60px;" id="preview"></div>
-                    @Html.ValidationMessageFor(model => model.Content, null, new { @class = "help-inline" })
-                </div>
-            </div>
+    <p>
+        <b>Studie</b><br />
+        <select id="study_select">
+            @foreach (var study in ViewBag.StudyId)
+            {
+                <option value="@study.Id">@study.Name</option>
+            }
+        </select>
+    </p>
 
-            <div class="control-group">
-                <b>Studie</b>
-                @*@Html.LabelFor(model => model.StudyId, "Study", new { @class = "control-label" })*@
-                <div class="controls">
-                    @Html.DropDownList("StudyId", String.Empty)
-                    @Html.ValidationMessageFor(model => model.StudyId, null, new { @class = "help-inline" })
-                </div>
-            </div>
-
-            <div class="form-actions no-color">
-                <input type="submit" value="Save" class="btn" />
-            </div>
-        </form>
-        <div class="form-help-panel clearfix">
-            <h3>BB Code</h3>
-            <button title="Plaatje" id="bb-img">img</button>
-            <button id="bb-b">b</button>
-            <button id="bb-i">i</button>
-            <button id="bb-u">u</button>
-            <button id="bb-url">url</button>
-            <button id="bb-list">list</button>
-            <button id="bb-asterisk">*</button>
-            <button id="bb-color">color</button>
-            <button id="bb-quote">quote</button>
-        </div>
-        @*</fieldset>*@
-    }
+    <p>
+        <input type="button" id="btn_send" value="Edit" />
+    </p>
 
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+    @*@section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }*@
 
 </div>

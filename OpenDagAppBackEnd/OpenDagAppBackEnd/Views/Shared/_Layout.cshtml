@@ -53,30 +53,30 @@
                         @Html.ActionLink("Studiewijzer", "Index", "Survey")
                     <ul>
                         <li>@Html.ActionLink("Vragen", "Index", "Question")</li>
-                        <li>@Html.ActionLink("Antwoorden", "Index", "Answer")</li>
+                        @*@<li>@Html.ActionLink("Antwoorden", "Index", "Answer")</li>*@
+                        </ul>
+                    </li>
+                    <li>
+                        @Html.ActionLink("Dagprogramma", "Index", "TimeTable")
+                    <ul>
+                        <li>@Html.ActionLink("Activiteiten", "Index", "TimeTableEntry")</li>
                     </ul>
                 </li>
-                <li>
-                    @Html.ActionLink("Dagprogramma", "Index", "TimeTable")
-                <ul>
-                    <li>@Html.ActionLink("Activiteiten", "Index", "TimeTableEntry")</li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-</div>
-</div>
-</header>
+            </ul>
+        </nav>
+    </div>
+    </div>
+    </header>
 
-<section id="main-content wrapper">
+    <section id="main-content wrapper">
 
-    <!--[if lt IE 7]>
-        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-    <![endif]-->
-    @RenderSection("featured", required: false)
-    @RenderBody()
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+        @RenderSection("featured", required: false)
+        @RenderBody()
 
-    @*            @Scripts.Render("~/bundles/scripts")*@
+        @*            @Scripts.Render("~/bundles/scripts")*@
     @RenderSection("scripts", required: false)
 </section>
 

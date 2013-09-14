@@ -4,69 +4,73 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="bodyForms">
+    <h2>Details</h2>
 
-<fieldset>
-	<legend><h3>TimeTableEntry</h3></legend>
-	<dl>
-		<dt>
-            <b>Activiteit</b>
-			@*@Html.DisplayNameFor(model => model.Title)*@
-		</dt>
+    <fieldset>
+        <legend><h3>TimeTableEntry</h3></legend>
+        <dl>
+            <dt>
+                <b>Activiteit</b>
+                @*@Html.DisplayNameFor(model => model.Title)*@
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Title)
-		</dd>
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
 
-		<dt>
-            <b>Beschrijving activiteit</b>
-			@*@Html.DisplayNameFor(model => model.Description)*@
-		</dt>
+            <dt>
+                <b>Beschrijving activiteit</b>
+                @*@Html.DisplayNameFor(model => model.Description)*@
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Description)
-		</dd>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-		<dt>
-            <b>Locatie</b>
-			@*@Html.DisplayNameFor(model => model.Location)*@
-		</dt>
+            <dt>
+                <b>Locatie</b>
+                @*@Html.DisplayNameFor(model => model.Location)*@
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.Location)
-		</dd>
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
 
-		<dt>
-            <b>Begintijd</b>
-			@*@Html.DisplayNameFor(model => model.StartTime)*@
-		</dt>
+            <dt>
+                <b>Begintijd</b>
+                @*@Html.DisplayNameFor(model => model.StartTime)*@
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.StartTime)
-		</dd>
+            <dd>
+                @Model.StartTime.TimeOfDay
+                @*@Html.DisplayFor(model => model.StartTime)*@
+            </dd>
 
-		<dt>
-            <b>Eindtijd</b>
-			@*@Html.DisplayNameFor(model => model.EndTime)*@
-		</dt>
+            <dt>
+                <b>Eindtijd</b>
+                @*@Html.DisplayNameFor(model => model.EndTime)*@
+            </dt>
 
-		<dd>
-			@Html.DisplayFor(model => model.EndTime)
-		</dd>
+            <dd>
+                @Model.EndTime.TimeOfDay
+                @*@Html.DisplayFor(model => model.EndTime)*@
+            </dd>
 
-		<dt>
-            <b>Dagprogramma</b>
-			@*@Html.DisplayNameFor(model => model.TimeTable.Id)*@
-		</dt>
+            <dt>
+                <b>Dagprogramma</b>
+                @*@Html.DisplayNameFor(model => model.TimeTable.Id)*@
+            </dt>
 
-		<dd>
-            @ViewBag.TimeTable
-			@*@Html.DisplayFor(model => model.TimeTable.Id)*@
-		</dd>
+            <dd>
+                @ViewBag.TimeTable.Day-@ViewBag.TimeTable.Month-@ViewBag.TimeTable.Year
+                @*@Html.DisplayFor(model => model.TimeTable.Id)*@
+            </dd>
 
-	</dl>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </dl>
+    </fieldset>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

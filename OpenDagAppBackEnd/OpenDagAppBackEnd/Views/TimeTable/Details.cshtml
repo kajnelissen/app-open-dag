@@ -16,7 +16,7 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Date)
+                @Model.Date.Day-@Model.Date.Month-@Model.Date.Year
             </dd>
             <br />
             <br />
@@ -46,11 +46,14 @@
                     @foreach (var a in ViewBag.TimeTableEntries)
                     {
                         <tr>
-                            <td>@a.StartTime</td>
-                            <td>@a.EndTime</td>
+                            <td>@a.StartTime.TimeOfDay</td>
+                            <td>@a.EndTime.TimeOfDay</td>
                             <td>@a.Title</td>
                             <td>@a.Description</td>
                             <td>@a.Location</td>
+                            <td>@Html.ActionLink("Edit", "Edit", "TimeTableEntry", new { id = a.Id }, null)</td>
+                            <td>@Html.ActionLink("Details", "Details", "TimeTableEntry", new { id = a.Id }, null)</td>
+                            <td>@Html.ActionLink("Delete", "Delete", "TimeTableEntry", new { id = a.Id }, null)</td>
                         </tr>
                     }
                 </table>

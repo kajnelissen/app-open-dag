@@ -25,6 +25,7 @@ namespace OpenDagAppBackEnd.Controllers
         public ActionResult Details(Int32 id)
         {
             TimeTable timetable = db.TimeTable.Find(id);
+            ViewBag.TimeTableEntries = db.TimeTableEntry.ToList().Where(x => x.TimeTableId == timetable.Id);
 
             if (timetable.TimeTableEntries.Count != 0)
             {
@@ -50,6 +51,19 @@ namespace OpenDagAppBackEnd.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(TimeTable timetable)
+        {
+            if (ModelState.IsValid)
+            {
+                db.TimeTable.Add(timetable);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(timetable);
+        }
+
+        [HttpPost]
+        public ActionResult CreateTimeTable(TimeTable timetable)
         {
             if (ModelState.IsValid)
             {

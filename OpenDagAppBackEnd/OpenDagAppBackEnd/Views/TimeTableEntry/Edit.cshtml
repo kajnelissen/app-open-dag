@@ -4,88 +4,91 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<div class="bodyForms">
+    <h2>Edit</h2>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-    <fieldset class="form-horizontal">
-        <legend><h3>TimeTableEntry</h3></legend>
+        <fieldset class="form-horizontal">
+            <legend><h3>TimeTableEntry</h3></legend>
 
-        @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.Id)
 
-        <!--Activity Name-->
-        <div class="control-group">
-            <b>Activiteit</b>
-            @*@Html.LabelFor(model => model.Title, new { @class = "control-label" })*@
-			<div class="controls">
-				@Html.EditorFor(model => model.Title)
-				@Html.ValidationMessageFor(model => model.Title, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <!--Activity Name-->
+            <div class="control-group">
+                <b>Activiteit</b>
+                @*@Html.LabelFor(model => model.Title, new { @class = "control-label" })*@
+                <div class="controls">
+                    @Html.EditorFor(model => model.Title)
+                    @Html.ValidationMessageFor(model => model.Title, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <!--Activity desicription-->
-        <div class="control-group">
-            <b>Beschrijving activiteit</b>
-            @*@Html.LabelFor(model => model.Description, new { @class = "control-label" })*@
-			<div class="controls">
-				@Html.EditorFor(model => model.Description)
-				@Html.ValidationMessageFor(model => model.Description, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <!--Activity desicription-->
+            <div class="control-group">
+                <b>Beschrijving activiteit</b>
+                @*@Html.LabelFor(model => model.Description, new { @class = "control-label" })*@
+                <div class="controls">
+                    @Html.EditorFor(model => model.Description)
+                    @Html.ValidationMessageFor(model => model.Description, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <!--Location of activity-->
-        <div class="control-group">
-            <b>Locatie</b>
-            @*@Html.LabelFor(model => model.Location, new { @class = "control-label" })*@
-			<div class="controls">
-				@Html.EditorFor(model => model.Location)
-				@Html.ValidationMessageFor(model => model.Location, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <!--Location of activity-->
+            <div class="control-group">
+                <b>Locatie</b>
+                @*@Html.LabelFor(model => model.Location, new { @class = "control-label" })*@
+                <div class="controls">
+                    @Html.EditorFor(model => model.Location)
+                    @Html.ValidationMessageFor(model => model.Location, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <!--StartTime-->
-        <div class="control-group">
-            <b>Begintijd</b>
-            @*@Html.LabelFor(model => model.StartTime, new { @class = "control-label" })*@
-			<div class="controls">
-				@Html.EditorFor(model => model.StartTime)
-				@Html.ValidationMessageFor(model => model.StartTime, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <!--StartTime-->
+            <div class="control-group">
+                <b>Begintijd</b>
+                @*@Html.LabelFor(model => model.StartTime, new { @class = "control-label" })*@
+                <div class="controls">
+                    @Html.EditorFor(model => model.StartTime)
+                    @Html.ValidationMessageFor(model => model.StartTime, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <!--EndTime-->
-        <div class="control-group">
-            <b>Eindtijd</b>
-            @*@Html.LabelFor(model => model.EndTime, new { @class = "control-label" })*@
-			<div class="controls">
-				@Html.EditorFor(model => model.EndTime)
-				@Html.ValidationMessageFor(model => model.EndTime, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <!--EndTime-->
+            <div class="control-group">
+                <b>Eindtijd</b>
+                @*@Html.LabelFor(model => model.EndTime, new { @class = "control-label" })*@
+                <div class="controls">
+                    @Html.EditorFor(model => model.EndTime)
+                    @Html.ValidationMessageFor(model => model.EndTime, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <!--TimeTable-->
-        <div class="control-group">
-            <b>Dagprogramma</b>
-            @*@Html.LabelFor(model => model.TimeTableId, "TimeTable", new { @class = "control-label" })*@
-			<div class="controls">
-				@Html.DropDownList("TimeTableId", String.Empty)
-				@Html.ValidationMessageFor(model => model.TimeTableId, null, new { @class = "help-inline" })
-			</div>
-		</div>
+            <!--TimeTable-->
+            <div class="control-group">
+                <b>Dagprogramma</b>
+                @*@Html.LabelFor(model => model.TimeTableId, "TimeTable", new { @class = "control-label" })*@
+                <div class="controls">
+                    @Html.DropDownList("TimeTableId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.TimeTableId, null, new { @class = "help-inline" })
+                </div>
+            </div>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Save" class="btn" />
-        </div>
-    </fieldset>
-}
+            <div class="form-actions no-color">
+                <input type="submit" value="Save" class="btn" />
+            </div>
+        </fieldset>
+    }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
