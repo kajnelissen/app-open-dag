@@ -8,7 +8,7 @@
     <h2>Details</h2>
 
     <fieldset>
-        <legend>Survey</legend>
+        <legend>Vragenlijst</legend>
         <dl>
             <dt>
                 @Html.DisplayNameFor(model => model.Name)
@@ -41,7 +41,7 @@
             {
                 <tr>
                     <td>@a.Text</td>
-                    <td>@Html.ActionLink("Edit", "Edit", "Question", new { id = a.Id }, null)</td>
+                    <td>@Html.ActionLink("Aanpassen", "Edit", "Question", new { id = a.Id }, null)</td>
                     <td>@Html.ActionLink("Details", "Details", "Question", new { id = a.Id }, null)</td>
                     <td>@Html.ActionLink("Delete", "Delete", "Question", new { id = a.Id }, null)</td>
                 </tr>
@@ -50,7 +50,7 @@
     }
 
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Aanpassen", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Terug naar de lijst", "Index")
     </p>
 </div>

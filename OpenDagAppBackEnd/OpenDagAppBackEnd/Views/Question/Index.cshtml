@@ -8,8 +8,8 @@
     <h2>Overzicht vragen</h2>
 
     <p>
-        @*@Html.ActionLink("Create New", "Create")*@
-        @Html.ActionLink("Create New", "CreateQuestions")
+        @*@Html.ActionLink("Creëer nieuw", "Create")*@
+        @Html.ActionLink("Creëer nieuw", "CreateQuestions")
     </p>
     <table class="table" border="1">
         <tr>
@@ -34,7 +34,7 @@
                     @Html.DisplayFor(modelItem => item.Survey.Name)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Aanpassen", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </td>
