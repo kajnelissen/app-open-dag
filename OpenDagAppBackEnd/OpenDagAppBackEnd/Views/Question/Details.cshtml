@@ -8,7 +8,7 @@
     <h2>Details</h2>
 
     <fieldset>
-        <legend><b>Question</b></legend>
+        <legend><b>Vragen</b></legend>
         <dl>
             <dt>
                 <b>Vraag</b>
@@ -20,7 +20,7 @@
             </dd>
 
             <dt>
-                <b>Survey Naam</b>
+                <b>Vragenlijst Naam</b>
                 @*<b>@Html.DisplayNameFor(model => model.Survey.Name)</b>*@
             </dt>
 
@@ -32,8 +32,8 @@
         </dl>
     </fieldset>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Aanpassen", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Terug naar de lijst", "Index")
     </p>
 
     @if (ViewBag.Answers != null)
