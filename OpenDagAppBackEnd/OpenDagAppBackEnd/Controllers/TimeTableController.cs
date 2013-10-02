@@ -25,13 +25,6 @@ namespace OpenDagAppBackEnd.Controllers
         public ActionResult Details(Int32 id)
         {
             TimeTable timetable = db.TimeTable.Find(id);
-            ViewBag.TimeTableEntries = db.TimeTableEntry.ToList().Where(x => x.TimeTableId == timetable.Id);
-
-            if (timetable.TimeTableEntries.Count != 0)
-            {
-                ViewBag.TimeTableEntries = db.TimeTableEntry.ToList().Where(a => a.TimeTable.Id == timetable.Id);
-            }
-
             if (timetable == null)
             {
                 return HttpNotFound();
@@ -47,11 +40,21 @@ namespace OpenDagAppBackEnd.Controllers
         }
 
         //
-        // POST: /TimeTable/Create
+        // GET: /TimeTable/CreateTimeTable
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(TimeTable timetable)
+        public ActionResult CreateTimeTable(TimeTable timetable)
         {
+            if (timetable.Active)
+            {
+                List<TimeTable> s = db.TimeTable.Where(l => l.Active == true).ToList();
+                if (s.Count == 1)
+                {
+                    TimeTable timetableActive = s.First();
+                    timetableActive.Active = false;
+                    db.Entry(timetableActive).State = EntityState.Modified;
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 db.TimeTable.Add(timetable);
@@ -62,11 +65,22 @@ namespace OpenDagAppBackEnd.Controllers
             return View(timetable);
         }
 
+        //
+        // POST: /TimeTable/Create
         [HttpPost]
-        public ActionResult CreateTimeTable(TimeTable timetable)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(TimeTable timetable)
         {
             if (ModelState.IsValid)
             {
+                List<TimeTable> s = db.TimeTable.Where(l => l.Active == true).ToList();
+                if (s.Count == 1)
+                {
+                    TimeTable timetableActive = s.First();
+                    timetableActive.Active = false;
+                    db.Entry(timetableActive).State = EntityState.Modified;
+                }
+
                 db.TimeTable.Add(timetable);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -93,6 +107,17 @@ namespace OpenDagAppBackEnd.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(TimeTable timetable)
         {
+            if (timetable.Active)
+            {
+                List<TimeTable> s = db.TimeTable.Where(l => l.Active == true).ToList();
+                if (s.Count == 1)
+                {
+                    TimeTable timetableActive = s.First();
+                    timetableActive.Active = false;
+                    db.Entry(s).State = EntityState.Modified;
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(timetable).State = EntityState.Modified;

@@ -17,8 +17,11 @@ namespace OpenDagAppBackEnd.Models
         // 
         // System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<OpenDagAppBackEnd.Models.OpenDagAppBackEndContext>());
 
-        //public OpenDagAppBackEndContext() : base("name=OpenDagAppBackEndContext")
-        public OpenDagAppBackEndContext() : base("name=DB_9AA598_opendagzuydfacict")
+
+        public OpenDagAppBackEndContext()
+            : base("name=OpenDagAppBackEndContext")
+        //public OpenDagAppBackEndContext()
+        //    : base("name=DB_9AA598_opendagzuydict")
         {
         }
 
@@ -30,8 +33,6 @@ namespace OpenDagAppBackEnd.Models
 
         public DbSet<OpenDagAppBackEnd.Models.Question> Question { get; set; }
 
-        public DbSet<OpenDagAppBackEnd.Models.Answer> Answer { get; set; }
-
         public DbSet<OpenDagAppBackEnd.Models.NavigationTrack> NavigationTrack { get; set; }
 
         public DbSet<OpenDagAppBackEnd.Models.StudyInformation> StudyInformation { get; set; }
@@ -39,60 +40,5 @@ namespace OpenDagAppBackEnd.Models
         public DbSet<OpenDagAppBackEnd.Models.TimeTableEntry> TimeTableEntry { get; set; }
 
         public DbSet<OpenDagAppBackEnd.Models.Study> Study { get; set; }
-
-        public DbSet<OpenDagAppBackEnd.Models.AnswerStudy> AnswerStudy { get; set; }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<AnswerStudy>()
-                .HasRequired(x => x.Answer);
-
-            modelBuilder.Entity<AnswerStudy>()
-                .HasRequired(x => x.Study);
-
-            // comment
-            /*modelBuilder.Entity<Answer>()
-                        .HasMany<Study>(e => e.)
-                        //.WithMany(u => u.AnswerStudies)
-                        .Map(m =>
-                        {
-                            m.ToTable("AnswerStudies");
-                            m.MapLeftKey("AnswerID");
-                            m.MapRightKey("StudyID");
-                        });*/
-            /*modelBuilder.Entity<Answer>()
-                .HasMany(t => t.AnswerStudies)
-                .WithMany(t => t.)
-                .Map(m =>
-                {
-                    m.ToTable("AnswerStudies");
-                    m.MapLeftKey("AnswerID");
-                    m.MapRightKey("StudyID");
-                });*/
-
-            /*modelBuilder.Entity<AnswerStudy>()
-               .HasKey(cp => new { cp.AnswerId, cp.StudyId });*/
-
-            /*
-             * HIERONDER COMMENTAAR WEGHALEN
-             */
-
-            /*modelBuilder.Entity<Answer>()
-                        .HasMany(a => a.AnswerStudies)
-                        .WithRequired()
-                        .HasForeignKey(cp => cp.AnswerId);
-
-            modelBuilder.Entity<Study>()
-                        .HasMany(p => p.AnswerStudies)
-                        .WithRequired()
-                        .HasForeignKey(cp => cp.StudyId);  */
-            
-            /*modelBuilder.Entity<AnswerStudy>()
-                        .HasRequired(a => a.Answer)
-                        .WithMany(b => b.AnswerStudies);
-            modelBuilder.Entity<AnswerStudy>()
-                        .HasRequired(a => a.Study)
-                        .WithMany(b => b.AnswerStudies);*/    // b => b.ArmorialAwards
-        }
     }
 }

@@ -13,6 +13,8 @@ namespace OpenDagAppBackEnd.Models
         [Required]
         public DateTime Date { get; set; }
 
+        public bool Active { get; set; }
+
         public virtual ICollection<TimeTableEntry> TimeTableEntries { get; set; }
     }
 }

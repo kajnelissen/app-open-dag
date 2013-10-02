@@ -21,7 +21,5 @@ namespace OpenDagAppBackEnd.Models
         //public int StudyInformationId { get; set; }
 
         public virtual ICollection<StudyInformation> Information { get; set; }
-
-        public virtual ICollection<AnswerStudy> AnswerStudies { get; set; }
     }
 }

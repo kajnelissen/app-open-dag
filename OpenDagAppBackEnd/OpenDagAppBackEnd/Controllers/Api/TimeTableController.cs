@@ -25,7 +25,8 @@ namespace OpenDagAppBackEnd.Controllers.Api
         // GET api/TimeTable/5
         public TimeTable GetTimeTable(Int32 id)
         {
-            TimeTable timetable = db.TimeTable.Find(id);
+            //TimeTable timetable = db.TimeTable.Find(id);
+            TimeTable timetable = db.TimeTable.Where(d => d.Active == true).First();
             if (timetable == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));

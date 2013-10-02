@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 using OpenDagAppBackEnd.Models;
 
 namespace OpenDagAppBackEnd.Controllers
@@ -37,8 +38,30 @@ namespace OpenDagAppBackEnd.Controllers
         // GET: /NavigationTrack/Create
         public ActionResult Create()
         {
-            ViewBag.RouteId = new SelectList(db.NavigationRoute, "Id", "Name");
+            ViewBag.RouteId = db.NavigationRoute.ToList();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult FileUpload(HttpPostedFileBase file, string routeselect)
+        {
+            if (file != null)
+            {
+                byte[] bytes = new byte[file.ContentLength];
+                file.InputStream.Read(bytes, 0, Convert.ToInt32(file.ContentLength));
+                NavigationTrack navigationtrack = new NavigationTrack();
+                int routeId = Convert.ToInt32(routeselect);
+                navigationtrack.Route = db.NavigationRoute.Where(x => x.Id == routeId).ToList().First();
+                string baseString = Convert.ToBase64String(bytes);
+                navigationtrack.Image = baseString;
+                navigationtrack.FileName = file.FileName;
+
+                db.NavigationTrack.Add(navigationtrack);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            // after successfully uploading redirect the user
+            return RedirectToAction("Index", "NavigationTrack");
         }
 
         //
@@ -67,6 +90,16 @@ namespace OpenDagAppBackEnd.Controllers
             {
                 return HttpNotFound();
             }
+
+            //byte[] imageData = Convert.FromBase64String(navigationtrack.Image);
+            //System.Drawing.Image image;
+            //using (MemoryStream ms = new MemoryStream(imageData))
+            //{
+            //    image = System.Drawing.Bitmap.FromStream(ms);
+            //}
+            string image = navigationtrack.Image;
+            ViewBag.Image = image;
+
             ViewBag.RouteId = new SelectList(db.NavigationRoute, "Id", "Name", navigationtrack.RouteId);
             return View(navigationtrack);
         }

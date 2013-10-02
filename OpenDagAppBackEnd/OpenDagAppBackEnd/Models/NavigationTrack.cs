@@ -13,6 +13,8 @@ namespace OpenDagAppBackEnd.Models
 
         public NavigationRoute Route { get; set; }
 
-        public Byte[] Image { get; set; }
+        public string FileName { get; set; }
+
+        public string Image { get; set; }
     }
 }
