@@ -25,7 +25,8 @@ namespace OpenDagAppBackEnd.Controllers.Api
         // GET api/NavigationRoutes/5
         public NavigationRoute GetNavigationRoute(Int32 id)
         {
-            NavigationRoute navigationroute = db.NavigationRoute.Find(id);
+            //NavigationRoute navigationroute = db.NavigationRoute.Find(id);
+            NavigationRoute navigationroute = db.NavigationRoute.Where(d => d.Active == true).First();
             if (navigationroute == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));

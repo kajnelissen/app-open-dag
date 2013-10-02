@@ -21,38 +21,17 @@ namespace OpenDagAppBackEnd.Controllers
             return View(question.ToList());
         }
 
-        public ActionResult CreateAnswerStudy()
-        {
-            ViewBag.SurveyId = db.Survey;
-            //ViewBag.SurveyId = new SelectList(db.Survey, "Id", "Name");
+        //public ActionResult CreateAnswerStudy()
+        //{
+        //    ViewBag.SurveyId = db.Survey;
+        //    //ViewBag.SurveyId = new SelectList(db.Survey, "Id", "Name");
 
-            List<Study> studies = db.Study.ToList();
-            ViewBag.StudyId = studies;
-            List<Answer> s = db.Answer.ToList();
-            ViewBag.AnswerId = s;
-            return View(db.Study);
-        }
-
-        [HttpPost]
-        public ActionResult AddAnswerStudies(Question q, Answer[] a, AnswerStudy[] astudies)
-        {
-            db.Question.Add(q);
-            db.SaveChanges();
-
-            for (int index = 0; index < a.Length; index++)
-            {
-                a[index].QuestionId = q.Id;
-                db.Answer.Add(a[index]);
-                db.SaveChanges();
-
-                astudies[index].AnswerId = a[index].Id;
-                astudies[index].Answer = a[index];
-                db.SaveChanges();
-            }
-
-            return RedirectToAction("Index");
-            //return Json(null, JsonRequestBehavior.AllowGet);
-        }
+        //    List<Study> studies = db.Study.ToList();
+        //    ViewBag.StudyId = studies;
+        //    List<Answer> s = db.Answer.ToList();
+        //    ViewBag.AnswerId = s;
+        //    return View(db.Study);
+        //}
 
         //
         // GET: /Question/Details/5
@@ -62,10 +41,10 @@ namespace OpenDagAppBackEnd.Controllers
             ViewBag.SurveyName = db.Survey.Find(question.SurveyId).Name;
             ViewBag.Study = db.Study.ToList();
 
-            if (question.Answers.Count > 0)
-            {
-                ViewBag.Answers = db.Answer.ToList().Where(a => a.QuestionId == question.Id);
-            }
+            //if (question.Answers.Count > 0)
+            //{
+            //    ViewBag.Answers = db.Answer.ToList().Where(a => a.QuestionId == question.Id);
+            //}
 
             if (question == null)
             {

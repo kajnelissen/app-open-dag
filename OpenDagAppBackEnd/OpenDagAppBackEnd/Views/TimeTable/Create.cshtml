@@ -9,10 +9,12 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#btn_send").click(function () {
-            console.log("Button clicked!");
             var timeTable = {
-                Date: $("#dateTest").val()
+                Date: $("#dateTest").val(),
+                Active: $("#isActive").is(':checked')
             };
+
+            console.log($("#isActive").checked);
 
             $.ajax({
                 type: "POST",
@@ -30,8 +32,6 @@
                 }
             });
         });
-
-
     });
 </script>
 
@@ -48,6 +48,8 @@
 
             <b>Datum</b>
             <input type="date" id="dateTest" /><br />
+            <b>Active</b>
+            <input type="checkbox" id="isActive" value="" /><br />
             <input type="button" value="Create" id="btn_send" />
         </fieldset>
     }

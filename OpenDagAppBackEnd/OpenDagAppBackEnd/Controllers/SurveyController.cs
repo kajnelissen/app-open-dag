@@ -53,6 +53,14 @@ namespace OpenDagAppBackEnd.Controllers
         {
             if (ModelState.IsValid)
             {
+                List<Survey> s = db.Survey.Where(l => l.Active == true).ToList();
+                if (s.Count == 1)
+                {
+                    Survey surveyActive = s.First();
+                    surveyActive.Active = false;
+                    db.Entry(surveyActive).State = EntityState.Modified;
+                }
+
                 db.Survey.Add(survey);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -81,6 +89,17 @@ namespace OpenDagAppBackEnd.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (survey.Active)
+                {
+                    List<Survey> s = db.Survey.Where(l => l.Active == true).ToList();
+                    if (s.Count == 1)
+                    {
+                        Survey surveyActive = s.First();
+                        surveyActive.Active = false;
+                        db.Entry(s).State = EntityState.Modified;
+                    }
+                }
+
                 db.Entry(survey).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
