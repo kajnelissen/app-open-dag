@@ -4,65 +4,30 @@
     ViewBag.Title = "Details";
 }
 
-<div class="bodyForms">
-    <h2>Details</h2>
+<h2>Details</h2>
 
-    <fieldset>
-        <legend><h3>TimeTable</h3></legend>
-        <dl>
-            <dt>
-                <b>Datum</b>
-                @*@Html.DisplayNameFor(model => model.Date)*@
-            </dt>
+<fieldset>
+	<legend>TimeTable</legend>
+	<dl>
+		<dt>
+			@Html.DisplayNameFor(model => model.Date)
+		</dt>
 
-            <dd>
-                @Model.Date.Day-@Model.Date.Month-@Model.Date.Year
-            </dd>
-            <br />
-            <br />
+		<dd>
+			@Html.DisplayFor(model => model.Date)
+		</dd>
 
+		<dt>
+			@Html.DisplayNameFor(model => model.Active)
+		</dt>
 
+		<dd>
+			@Html.DisplayFor(model => model.Active)
+		</dd>
 
-            @if (ViewBag.TimeTableEntries != null)
-            {
-                <table border="1">
-                    <tr>
-                        <th>
-                            Begintijd
-                        </th>
-                        <th>
-                            Eindtijd
-                        </th>
-                        <th>
-                            Naam
-                        </th>
-                        <th>
-                            Beschrijving
-                        </th>
-                        <th>
-                            Locatie
-                        </th>
-                    </tr>
-                    @foreach (var a in ViewBag.TimeTableEntries)
-                    {
-                        <tr>
-                            <td>@a.StartTime.TimeOfDay</td>
-                            <td>@a.EndTime.TimeOfDay</td>
-                            <td>@a.Title</td>
-                            <td>@a.Description</td>
-                            <td>@a.Location</td>
-                            <td>@Html.ActionLink("Edit", "Edit", "TimeTableEntry", new { id = a.Id }, null)</td>
-                            <td>@Html.ActionLink("Details", "Details", "TimeTableEntry", new { id = a.Id }, null)</td>
-                            <td>@Html.ActionLink("Delete", "Delete", "TimeTableEntry", new { id = a.Id }, null)</td>
-                        </tr>
-                    }
-                </table>
-            }
-
-        </dl>
-    </fieldset>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</div>
+	</dl>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -18,6 +18,6 @@ namespace OpenDagAppBackEnd.Models
 
         public Survey Survey { get; set; }
 
-        public virtual ICollection<Answer> Answers { get; set; }
+        //public virtual ICollection<Answer> Answers { get; set; }
     }
 }

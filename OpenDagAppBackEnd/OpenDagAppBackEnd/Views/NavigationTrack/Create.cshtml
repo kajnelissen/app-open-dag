@@ -5,36 +5,19 @@
 }
 
 <div class="bodyForms">
-    <h2>Creëer</h2>
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("FileUpload", "NavigationTrack", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
+        <select id="routeselect" name="routeselect">
+            @foreach (var route in (List<OpenDagAppBackEnd.Models.NavigationRoute>)ViewBag.RouteId)
+            {
+                <option value="@route.Id">@route.Name</option>
+            }
+        </select><br />
 
-        <fieldset class="form-horizontal">
-            <legend>NavigationTrack</legend>
-
-            <div class="control-group">
-                @Html.LabelFor(model => model.RouteId, "Route", new { @class = "control-label" })
-                <div class="controls">
-                    @Html.DropDownList("RouteId", String.Empty)
-                    @Html.ValidationMessageFor(model => model.RouteId, null, new { @class = "help-inline" })
-                </div>
-            </div>
-
-            <div class="form-actions no-color">
-                <input type="submit" value="Create" class="btn" />
-            </div>
-        </fieldset>
+        <input type="file" name="file" id="file" /><br />
+        <input type="submit" value="Upload" class="submit" />
     }
 
-    <div>
-        @Html.ActionLink("Terug naar de lijst", "Index")
-    </div>
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
-
+    @Html.ActionLink("Terug naar de lijst", "Index")
 </div>

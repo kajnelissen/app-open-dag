@@ -16,6 +16,12 @@ namespace OpenDagAppBackEnd.Controllers.Api
     {
         private OpenDagAppBackEndContext db = new OpenDagAppBackEndContext();
 
+        // GET api/Survey/ActiveSurvey
+        public Survey GetSurvey(bool active)
+        {
+            return db.Survey.Where(s => s.Active == true).First();
+        }
+
         // GET api/Survey
         public IEnumerable<Survey> GetSurvey()
         {
@@ -25,7 +31,8 @@ namespace OpenDagAppBackEnd.Controllers.Api
         // GET api/Survey/5
         public Survey GetSurvey(Int32 id)
         {
-            Survey survey = db.Survey.Find(id);
+            //Survey survey = db.Survey.Find(id);
+            Survey survey = db.Survey.Where(d => d.Active == true).First();
             if (survey == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
