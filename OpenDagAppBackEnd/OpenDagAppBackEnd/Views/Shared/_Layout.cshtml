@@ -36,10 +36,11 @@
                 <nav id="mainnav">
                     <ul>
                         <li>
-                            @Html.ActionLink("Studies", "Index", "Study")
+                            <a href="#">Studie</a>
+                            @*@Html.ActionLink("Studies", "Index", "Study")*@
                         <ul>
-                            <li>@Html.ActionLink("Studies", "Index", "Study")</li>
-                            <li>@Html.ActionLink("Studie Informatie", "Index", "StudyInformation")</li>
+                            <li>@Html.ActionLink("Profiel", "Index", "Study")</li>
+                            <li>@Html.ActionLink("Profiel Informatie", "Index", "StudyInformation")</li>
                         </ul>
                     </li>
                     <li>
@@ -50,15 +51,16 @@
                         </ul>
                     </li>
                     <li>
-                        @Html.ActionLink("Studiewijzer", "Index", "Survey")
+                        <a href="#">Studiewijzer</a>
                     <ul>
+                        <li>@Html.ActionLink("Studiewijzer", "Index", "Survey")</li>
                         <li>@Html.ActionLink("Vragen", "Index", "Question")</li>
-                        @*@<li>@Html.ActionLink("Antwoorden", "Index", "Answer")</li>*@
                         </ul>
                     </li>
                     <li>
-                        @Html.ActionLink("Dagprogramma", "Index", "TimeTable")
+                      <a href="#">Dagprogramma</a>  
                     <ul>
+                        <li>@Html.ActionLink("Dagprogramma", "Index", "TimeTable")</li>
                         <li>@Html.ActionLink("Activiteiten", "Index", "TimeTableEntry")</li>
                     </ul>
                 </li>

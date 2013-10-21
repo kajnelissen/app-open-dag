@@ -36,6 +36,9 @@
                 <b>Dagprogramma</b>
                 @*@Html.DisplayNameFor(model => model.TimeTable.Id)*@
             </th>
+            <th>
+                <b>Hele dag</b>
+            </th>
             <th></th>
         </tr>
 
@@ -62,6 +65,9 @@
                 <td>
                     @*@Html.DisplayFor(modelItem => item.TimeTable.Id*@
                     @Html.DisplayFor(modelItem => item.TimeTable.Date.Day)-@Html.DisplayFor(modelItem => item.TimeTable.Date.Month)-@Html.DisplayFor(modelItem => item.TimeTable.Date.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WholeDay)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

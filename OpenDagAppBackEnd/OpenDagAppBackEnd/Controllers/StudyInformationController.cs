@@ -56,7 +56,7 @@ namespace OpenDagAppBackEnd.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.StudyId = new SelectList(db.Study, "Id", "Name", studyinformation.StudyId);
+            //ViewBag.StudyId = new SelectList(db.Study, "Id", "Name", studyinformation.StudyId);
             return View(studyinformation);
         }
 

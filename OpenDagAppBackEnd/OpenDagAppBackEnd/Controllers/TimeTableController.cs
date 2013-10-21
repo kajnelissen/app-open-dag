@@ -114,7 +114,7 @@ namespace OpenDagAppBackEnd.Controllers
                 {
                     TimeTable timetableActive = s.First();
                     timetableActive.Active = false;
-                    db.Entry(s).State = EntityState.Modified;
+                    db.Entry(timetableActive).State = EntityState.Modified;
                 }
             }
 

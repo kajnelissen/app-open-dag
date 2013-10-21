@@ -18,10 +18,11 @@ namespace OpenDagAppBackEnd.Models
         // System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<OpenDagAppBackEnd.Models.OpenDagAppBackEndContext>());
 
 
-        public OpenDagAppBackEndContext()
-            : base("name=OpenDagAppBackEndContext")
         //public OpenDagAppBackEndContext()
-        //    : base("name=DB_9AA598_opendagzuydict")
+        //    : base("name=OpenDagAppBackEndContext")
+
+        public OpenDagAppBackEndContext()
+            : base("DB_9AA598_opendagzuyd2013")
         {
         }
 

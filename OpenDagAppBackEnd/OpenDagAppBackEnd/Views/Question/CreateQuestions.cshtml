@@ -27,7 +27,7 @@
                     q: questions
                 }),
                 success: function () {
-                    console.log("Gelukt");
+                    window.location.href = "../Question/Index"
                 },
                 error: function () {
                     console.log("Mislukt");
@@ -36,7 +36,7 @@
         });
 
         $("#btn_add_questions").click(function () {
-            var newInput = $("<li class=\"question\"><input type=\"text\" class=\"list-item\" /></li>");
+            var newInput = $("<li class=\"question\"><input type=\"text\" size=\"100px\" class=\"list-item\" /></li>");
             $("#question-list").append(newInput);
         });
     });
@@ -62,7 +62,7 @@
         <h2>Vragen</h2>
         <div id="question-container">
             <ul id="question-list">
-                <li class="question"><input type="text" class="list-item" /></li>
+                <li class="question"><input type="text" size="300" class="list-item" /></li>
             </ul>
         </div>
         

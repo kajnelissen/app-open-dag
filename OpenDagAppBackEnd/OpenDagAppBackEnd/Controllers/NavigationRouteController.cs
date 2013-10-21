@@ -45,6 +45,17 @@ namespace OpenDagAppBackEnd.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(NavigationRoute navigationroute)
         {
+            if (navigationroute.Active)
+            {
+                List<NavigationRoute> s = db.NavigationRoute.Where(l => l.Active == true).ToList();
+                if (s.Count == 1)
+                {
+                    NavigationRoute navigationrouteActive = s.First();
+                    navigationrouteActive.Active = false;
+                    db.Entry(navigationrouteActive).State = EntityState.Modified;
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 db.NavigationRoute.Add(navigationroute);
@@ -73,6 +84,17 @@ namespace OpenDagAppBackEnd.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(NavigationRoute navigationroute)
         {
+            if (navigationroute.Active)
+            {
+                List<NavigationRoute> s = db.NavigationRoute.Where(l => l.Active == true).ToList();
+                if (s.Count == 1)
+                {
+                    NavigationRoute navigationrouteActive = s.First();
+                    navigationrouteActive.Active = false;
+                    db.Entry(navigationrouteActive).State = EntityState.Modified;
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(navigationroute).State = EntityState.Modified;

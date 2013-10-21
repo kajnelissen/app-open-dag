@@ -7,6 +7,28 @@ namespace OpenDagAppBackEnd.Migrations
     {
         public override void Up()
         {
+            DropIndex("dbo.TimeTableEntries", new[] { "TimeTableId" });
+            DropIndex("dbo.StudyInformations", new[] { "StudyId" });
+            //DropIndex("dbo.Answers", new[] { "Question_Id" });
+            //DropIndex("dbo.Answers", new[] { "StudyId" });
+            DropIndex("dbo.Questions", new[] { "SurveyId" });
+            DropIndex("dbo.NavigationTracks", new[] { "RouteId" });
+            DropForeignKey("dbo.TimeTableEntries", "TimeTableId", "dbo.TimeTables");
+            DropForeignKey("dbo.StudyInformations", "StudyId", "dbo.Studies");
+            //DropForeignKey("dbo.Answers", "Question_Id", "dbo.Questions");
+            //DropForeignKey("dbo.Answers", "StudyId", "dbo.Studies");
+            DropForeignKey("dbo.Questions", "SurveyId", "dbo.Surveys");
+            DropForeignKey("dbo.NavigationTracks", "RouteId", "dbo.NavigationRoutes");
+            DropTable("dbo.TimeTableEntries");
+            DropTable("dbo.TimeTables");
+            DropTable("dbo.StudyInformations");
+            DropTable("dbo.Studies");
+            //DropTable("dbo.Answers");
+            DropTable("dbo.Questions");
+            DropTable("dbo.Surveys");
+            DropTable("dbo.NavigationTracks");
+            DropTable("dbo.NavigationRoutes");
+
             CreateTable(
                 "dbo.NavigationRoutes",
                 c => new
@@ -15,7 +37,7 @@ namespace OpenDagAppBackEnd.Migrations
                         Name = c.String(nullable: false, maxLength: 30),
                     })
                 .PrimaryKey(t => t.Id);
-            
+
             CreateTable(
                 "dbo.NavigationTracks",
                 c => new
@@ -49,7 +71,7 @@ namespace OpenDagAppBackEnd.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Surveys", t => t.SurveyId, cascadeDelete: true)
                 .Index(t => t.SurveyId);
-            
+
             CreateTable(
                 "dbo.Answers",
                 c => new
