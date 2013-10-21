@@ -181,6 +181,18 @@
     <Compile Include="Migrations\201310012237349_MajorUpdate.Designer.cs">
       <DependentUpon>201310012237349_MajorUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201310051238017_removeStudyInformationId.cs" />
+    <Compile Include="Migrations\201310051238017_removeStudyInformationId.Designer.cs">
+      <DependentUpon>201310051238017_removeStudyInformationId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310071030210_QuestionLengthChanged.cs" />
+    <Compile Include="Migrations\201310071030210_QuestionLengthChanged.Designer.cs">
+      <DependentUpon>201310071030210_QuestionLengthChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310211011228_booleanWholeDay.cs" />
+    <Compile Include="Migrations\201310211011228_booleanWholeDay.Designer.cs">
+      <DependentUpon>201310211011228_booleanWholeDay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\NavigationRoute.cs" />
     <Compile Include="Models\NavigationTrack.cs" />
@@ -633,6 +645,7 @@
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="bin\OpenDagAppBackEnd.dll.config" />
     <Content Include="ckeditor\.htaccess" />
+    <None Include="Properties\PublishProfiles\OpendagZuyd2013.pubxml" />
     <None Include="Properties\PublishProfiles\OpndagZuydICT.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -664,7 +677,6 @@
     <Content Include="Views\Question\Details.cshtml" />
     <Content Include="Views\Question\Edit.cshtml" />
     <Content Include="Views\Question\Index.cshtml" />
-    <Content Include="Views\TimeTableEntry\Create.cshtml" />
     <Content Include="Views\TimeTableEntry\Delete.cshtml" />
     <Content Include="Views\TimeTableEntry\Details.cshtml" />
     <Content Include="Views\TimeTableEntry\Edit.cshtml" />
@@ -709,6 +721,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201310012237349_MajorUpdate.resx">
       <DependentUpon>201310012237349_MajorUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310051238017_removeStudyInformationId.resx">
+      <DependentUpon>201310051238017_removeStudyInformationId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310071030210_QuestionLengthChanged.resx">
+      <DependentUpon>201310071030210_QuestionLengthChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310211011228_booleanWholeDay.resx">
+      <DependentUpon>201310211011228_booleanWholeDay.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

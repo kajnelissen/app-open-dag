@@ -14,6 +14,7 @@
         var locations = [];
         var starttimes = [];
         var endtimes = [];
+        var wholedays = [];
 
         $("#btn_send_1").click(function () {
             $(".activity").each(function () {
@@ -36,6 +37,11 @@
                 starttimes.push(starttime);
             });
 
+            $(".wholeday").each(function () {
+                var wholeday = (this).is(':checked');
+                wholedays.push(wholeday);
+            });
+
             $(".endtime").each(function () {
                 var endtime = (this).value;
                 endtimes.push(endtime);
@@ -48,7 +54,8 @@
                     Location: locations[index],
                     StartTime: starttimes[index],
                     EndTime: endtimes[index],
-                    TimeTableId: $("#timetableselect").val()
+                    TimeTableId: $("#timetableselect").val(),
+                    WholeDay: wholedays[index]
                 }
                 timeTableEntries.push(timeTableEntry);
             }
@@ -62,7 +69,7 @@
                     timeTableEntries: timeTableEntries
                 }),
                 success: function () {
-                    console.log("Gelukt");
+                    window.location.href = "../TimeTableEntry/Index"
                 },
                 error: function () {
                     console.log("Mislukt");
@@ -72,7 +79,7 @@
 
         $(document).ready(function () {
             $("#btn_add_time_entries").click(function () {
-                var newInput = $("<li class=\"timetable-entry-item\"><tr><td><input type=\"text\" class=\"activity\" /></td><td><input type=\"text\" class=\"description\" /></td><td><input type=\"text\" class=\"location\" /></td><td><input type=\"time\" class=\"starttime\" /></td><td><input type=\"time\" class=\"endtime\" /></td></tr></li>");
+                var newInput = $("<li class=\"timetable-entry-item\"><tr><td><input type=\"text\" class=\"activity\" /></td><td><input type=\"text\" class=\"description\" /></td><td><input type=\"text\" class=\"location\" /></td><td><input type=\"time\" class=\"starttime\" /></td><td><input type=\"time\" class=\"endtime\" /></td><td><input type=\"wholeday\" class=\"wholeday\" /></tr></li>");
                 $("#timtable-entry-list").append(newInput);
             });
         });
@@ -102,7 +109,7 @@
         <div id="timetable-container">
             <ul id="timtable-entry-list">
                 <table>
-                    <tr><th>Activiteit</th><th>Beschrijving</th><th>Locatie</th><th>Starttijd</th><th>Eindtijd</th></tr>
+                    <tr><th>Activiteit</th><th>Beschrijving</th><th>Locatie</th><th>Starttijd</th><th>Eindtijd</th><th>Hele dag</th></tr>
                     <li class="timetable-entry-item">
                         <tr>
                             <td><input type="text" class="activity" /></td>
@@ -110,6 +117,7 @@
                             <td><input type="text" class="location" /></td>
                             <td><input type="time" class="starttime" /></td>
                             <td><input type="time" class="endtime" /></td>
+                            <td><input type="checkbox" class="wholeday" /></td>
                         </tr>
                     </li>
                 </table>

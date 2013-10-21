@@ -28,6 +28,8 @@ namespace OpenDagAppBackEnd.Models
         [Required]
         public DateTime EndTime { get; set; }
 
+        public Boolean WholeDay { get; set; }
+
         public int TimeTableId { get; set; }
 
         public TimeTable TimeTable { get; set; }
