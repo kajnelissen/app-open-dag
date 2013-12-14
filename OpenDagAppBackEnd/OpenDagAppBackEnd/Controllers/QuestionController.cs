@@ -21,18 +21,6 @@ namespace OpenDagAppBackEnd.Controllers
             return View(question.ToList());
         }
 
-        //public ActionResult CreateAnswerStudy()
-        //{
-        //    ViewBag.SurveyId = db.Survey;
-        //    //ViewBag.SurveyId = new SelectList(db.Survey, "Id", "Name");
-
-        //    List<Study> studies = db.Study.ToList();
-        //    ViewBag.StudyId = studies;
-        //    List<Answer> s = db.Answer.ToList();
-        //    ViewBag.AnswerId = s;
-        //    return View(db.Study);
-        //}
-
         //
         // GET: /Question/Details/5
         public ActionResult Details(Int32 id)
@@ -84,22 +72,22 @@ namespace OpenDagAppBackEnd.Controllers
             //return View(q);
         }
 
-        //
-        // POST: /Question/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Question question)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Question.Add(question);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        ////
+        //// POST: /Question/Create
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(Question question)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Question.Add(question);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            ViewBag.SurveyId = new SelectList(db.Survey, "Id", "Name", question.SurveyId);
-            return View(question);
-        }
+        //    ViewBag.SurveyId = new SelectList(db.Survey, "Id", "Name", question.SurveyId);
+        //    return View(question);
+        //}
 
         //
         // GET: /Question/Edit/5

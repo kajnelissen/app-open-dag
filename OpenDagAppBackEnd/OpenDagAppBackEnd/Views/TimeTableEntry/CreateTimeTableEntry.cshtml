@@ -38,7 +38,7 @@
             });
 
             $(".wholeday").each(function () {
-                var wholeday = (this).is(':checked');
+                var wholeday = $(this).prop(':checked');
                 wholedays.push(wholeday);
             });
 

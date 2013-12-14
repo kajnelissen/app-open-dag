@@ -18,12 +18,14 @@ namespace OpenDagAppBackEnd.Models
         // System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<OpenDagAppBackEnd.Models.OpenDagAppBackEndContext>());
 
 
-        //public OpenDagAppBackEndContext()
-        //    : base("name=OpenDagAppBackEndContext")
-
         public OpenDagAppBackEndContext()
-            : base("DB_9AA598_opendagzuyd2013")
+            : base("name=OpenDagAppBackEndContext")
+        //public OpenDagAppBackEndContext()
+        //    : base("DB_9ABAD8_opendagzuydict")
+        //public OpenDagAppBackEndContext()
+        //    : base("ZuydOpendagServices")
         {
+
         }
 
         public DbSet<OpenDagAppBackEnd.Models.NavigationRoute> NavigationRoute { get; set; }
@@ -41,5 +43,10 @@ namespace OpenDagAppBackEnd.Models
         public DbSet<OpenDagAppBackEnd.Models.TimeTableEntry> TimeTableEntry { get; set; }
 
         public DbSet<OpenDagAppBackEnd.Models.Study> Study { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<System.Data.Entity.Infrastructure.IncludeMetadataConvention>();
+        }
     }
 }

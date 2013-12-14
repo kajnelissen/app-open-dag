@@ -13,12 +13,12 @@
         @Html.ValidationSummary(true)
 
         <fieldset class="form-horizontal">
-            <legend>NavigationTrack</legend>
+            @*<legend>NavigationTrack</legend>*@
 
             @Html.HiddenFor(model => model.Id)
 
             <div class="control-group">
-                @Html.LabelFor(model => model.RouteId, "Route", new { @class = "control-label" })
+                <b>@Html.LabelFor(model => model.RouteId, "Route", new { @class = "control-label" })</b>
                 <div class="controls">
                     @Html.DropDownList("RouteId", String.Empty)
                     @Html.ValidationMessageFor(model => model.RouteId, null, new { @class = "help-inline" })
@@ -26,23 +26,25 @@
             </div>
 
             <div class="control-group">
-                @Html.LabelFor(model => model.FileName, new { @class = "control-label" })
+                <b>@Html.LabelFor(model => model.FileName, new { @class = "control-label" })</b>
                 <div class="controls">
-                    @Html.EditorFor(model => model.FileName)
-                    @Html.ValidationMessageFor(model => model.FileName, null, new { @class = "help-inline" })
+                    @*@Html.EditorFor(model => model.FileName)*@
+                    @Html.DisplayTextFor(model => model.FileName)
+                    @*@Html.ValidationMessageFor(model => model.FileName, null, new { @class = "help-inline" })*@
                 </div>
             </div>
 
-            <div class="control-group">
+            @*<div class="control-group">
                 @Html.LabelFor(model => model.Image, new { @class = "control-label" })
                 <div class="controls">
                     @Html.EditorFor(model => model.Image)
                     @Html.ValidationMessageFor(model => model.Image, null, new { @class = "help-inline" })
                 </div>
-            </div>
+            </div>*@
 
-            <img src="data:image/gif;base64,@ViewBag.Image" width="200px" height="200px" alt="" />
-
+            @*<img src="data:image/gif;base64,@ViewBag.Image" width="200px" height="200px" alt="" />*@
+            <img src="http://opendagzuyd2013-001-site1.smarterasp.net\@ViewBag.Image" width="200px" height="200px" alt="" />
+             
             <div class="form-actions no-color">
                 <input type="submit" value="Save" class="btn" />
             </div>

@@ -22,7 +22,8 @@ namespace OpenDagAppBackEnd
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<OpenDagAppBackEnd.Models.OpenDagAppBackEndContext>());
+            //System.Data.Entity.Database.SetInitializer(new System.Data.Entity.DropCreateDatabaseIfModelChanges<OpenDagAppBackEnd.Models.OpenDagAppBackEndContext>());
+            System.Data.Entity.Database.SetInitializer<OpenDagAppBackEnd.Models.OpenDagAppBackEndContext>(new System.Data.Entity.DropCreateDatabaseAlways<OpenDagAppBackEnd.Models.OpenDagAppBackEndContext>());
         }
     }
 }

@@ -8,6 +8,11 @@ using System.Web.Mvc;
 using System.IO;
 using OpenDagAppBackEnd.Models;
 
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+
 namespace OpenDagAppBackEnd.Controllers
 {
     public class NavigationTrackController : Controller
@@ -27,10 +32,15 @@ namespace OpenDagAppBackEnd.Controllers
         public ActionResult Details(Int32 id)
         {
             NavigationTrack navigationtrack = db.NavigationTrack.Find(id);
+            
             if (navigationtrack == null)
             {
                 return HttpNotFound();
             }
+
+            string image = navigationtrack.Image;
+            ViewBag.Image = image;
+
             return View(navigationtrack);
         }
 
@@ -45,6 +55,26 @@ namespace OpenDagAppBackEnd.Controllers
         [HttpPost]
         public ActionResult FileUpload(HttpPostedFileBase file, string routeselect)
         {
+            FileUpload f = new FileUpload();
+
+            int fileLength = file.ContentLength;
+            byte[] myData = new Byte[fileLength];
+            file.InputStream.Read(myData, 0, fileLength);
+
+            
+
+            DateTime r = DateTime.Now;
+            string fileName = r.Year.ToString() + r.Month.ToString() + r.Day.ToString() + r.Hour.ToString() + r.Minute.ToString() + r.Second.ToString() + "img-" + file.FileName;
+            string url = "\\images\\" + fileName;
+
+            System.IO.FileStream newFile
+                = new System.IO.FileStream(Server.MapPath(url),
+                                           System.IO.FileMode.Create);
+            newFile.Write(myData, 0, myData.Length);
+            newFile.Close();
+
+            f.SaveAs(url);
+            
             if (file != null)
             {
                 byte[] bytes = new byte[file.ContentLength];
@@ -52,9 +82,9 @@ namespace OpenDagAppBackEnd.Controllers
                 NavigationTrack navigationtrack = new NavigationTrack();
                 int routeId = Convert.ToInt32(routeselect);
                 navigationtrack.Route = db.NavigationRoute.Where(x => x.Id == routeId).ToList().First();
-                string baseString = Convert.ToBase64String(bytes);
-                navigationtrack.Image = baseString;
-                navigationtrack.FileName = file.FileName;
+                /*string baseString = Convert.ToBase64String(bytes);*/
+                navigationtrack.Image = url;
+                navigationtrack.FileName = fileName;
 
                 db.NavigationTrack.Add(navigationtrack);
                 db.SaveChanges();

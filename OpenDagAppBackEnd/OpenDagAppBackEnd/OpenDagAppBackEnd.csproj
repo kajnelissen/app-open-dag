@@ -214,7 +214,9 @@
     <Content Include="bin\de\Microsoft.Data.OData.resources.dll" />
     <Content Include="bin\de\System.Spatial.resources.dll" />
     <Content Include="bin\EntityFramework.dll" />
-    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\EntityFramework.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="bin\es\Microsoft.Data.Edm.resources.dll" />
     <Content Include="bin\es\Microsoft.Data.OData.resources.dll" />
     <Content Include="bin\es\System.Spatial.resources.dll" />
@@ -647,6 +649,7 @@
     <Content Include="ckeditor\.htaccess" />
     <None Include="Properties\PublishProfiles\OpendagZuyd2013.pubxml" />
     <None Include="Properties\PublishProfiles\OpndagZuydICT.pubxml" />
+    <None Include="Properties\PublishProfiles\ZuydOpenDagHost.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -711,6 +714,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Controllers\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

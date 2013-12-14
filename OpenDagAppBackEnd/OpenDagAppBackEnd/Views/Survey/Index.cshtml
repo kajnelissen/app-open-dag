@@ -10,13 +10,15 @@
     <p>
         @Html.ActionLink("Creëer nieuw", "Create")
     </p>
-    <table class="table">
+    <table class="table" border="1">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Naam
+                @*@Html.DisplayNameFor(model => model.Name)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Active)
+                Actief
+                @*@Html.DisplayNameFor(model => model.Active)*@
             </th>
             <th></th>
         </tr>
@@ -28,7 +30,7 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Active)
+                    <center>@Html.DisplayFor(modelItem => item.Active)</center>
                 </td>
                 <td>
                     @Html.ActionLink("Aanpassen", "Edit", new { id = item.Id }) |

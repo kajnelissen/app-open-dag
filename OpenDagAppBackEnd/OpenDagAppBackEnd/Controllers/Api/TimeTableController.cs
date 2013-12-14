@@ -32,6 +32,15 @@ namespace OpenDagAppBackEnd.Controllers.Api
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
+            //List<TimeTableEntry> tb2 = timetable.TimeTableEntries.OrderBy(x => x.StartTime).ToList();
+            timetable.TimeTableEntries.OrderBy(x => x.StartTime.TimeOfDay);
+
+            //TimeTable tt = new TimeTable();
+            //tt.Active = timetable.Active;
+            //tt.Date = timetable.Date;
+            //tt.Id = timetable.Id;
+            //tt.TimeTableEntries = tb2;
+
             return timetable;
         }
 

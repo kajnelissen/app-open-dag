@@ -8,34 +8,38 @@
     <h2>Details</h2>
 
     <fieldset>
-        <legend>NavigationTrack</legend>
+        @*<legend>NavigationTrack</legend>*@
         <dl>
-            <dt>
+            @*<dt>
                 @Html.DisplayNameFor(model => model.Route.Name)
             </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.Route.Name)
-            </dd>
+            </dd>*@
 
             <dt>
-                @Html.DisplayNameFor(model => model.FileName)
+                @*@Html.DisplayNameFor(model => model.FileName)*@
+                <b>Bestandsnaam</b>
             </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.FileName)
             </dd>
 
-            <dt>
+            @*<dt>
                 @Html.DisplayNameFor(model => model.Image)
             </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.Image)
-            </dd>
-
+            </dd>*@
+            
         </dl>
     </fieldset>
+    <div>
+        <img src="http://opendagzuyd2013-001-site1.smarterasp.net\@Model.Image" width="200px" height="200px" alt="" />
+    </div>
     <p>
         @Html.ActionLink("Aanpassen", "Edit", new { id = Model.Id }) |
         @Html.ActionLink("Terug naar de lijst", "Index")

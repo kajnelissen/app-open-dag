@@ -64,7 +64,12 @@
         <select id="study_select">
             @foreach (var study in ViewBag.StudyId)
             {
-                <option value="@study.Id">@study.Name</option>
+                if (study.Id == @Model.Id)
+                {
+                    <option value="@study.Id" selected="selected">@study.Name</option>
+                } else {
+                    <option value="@study.Id">@study.Name</option>
+                }
             }
         </select>
     </p>
